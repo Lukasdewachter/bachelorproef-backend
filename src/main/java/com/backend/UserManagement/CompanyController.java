@@ -1,4 +1,4 @@
-package com.backend.UserManagement;
+package com.authenticatie;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -9,30 +9,31 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.CrossOrigin;
 
 @Controller
-@RequestMapping(path="/professor") // This means URL's start with professor (after Application path)
+@RequestMapping(path="/company") // This means URL's start with professor (after Application path)
 @CrossOrigin(origins = "http://localhost:3000")
 
-public class ProfessorController {
+public class CompanyController {
     @Autowired
-    private ProfessorRepository professorRepository;
+    private CompanyRepository companyRepository;
 
     @PostMapping(path="/add")
-    public @ResponseBody String addNewProfessor (@RequestParam String name) {
-        Professor n = new Professor();
-        n.setName(name);
-        professorRepository.save(n);
+    public @ResponseBody String addNewCompany (@RequestParam String companyname) {
+        Company c = new Company();
+        c.setName(companyname);
+        companyRepository.save(c);
         return "Saved";
     }
 
+    //TODO - Delete
     @PostMapping(path="/delete")
-    public @ResponseBody String deleteProfessor (@RequestParam int professorid) {
-        professorRepository.deleteById(professorid);
+    public @ResponseBody String deleteCompany (@RequestParam int companyid) {
+        companyRepository.deleteById(companyid);
         return "Deleted";
     }
 
     @GetMapping(path="/all")
-    public @ResponseBody Iterable<Professor> getAllProfessors() {
+    public @ResponseBody Iterable<Company> getAllCompanies() {
         // This returns a JSON or XML with the users
-        return professorRepository.findAll();
+        return companyRepository.findAll();
     }
 }

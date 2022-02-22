@@ -9,15 +9,15 @@ import javax.persistence.Id;
 public class Thesis {
     @Id
     @GeneratedValue(strategy=GenerationType.AUTO)
-    private Integer idmasterproeven;
+    private Integer idthesis;
     private String name;
     private String description;
     private String fieldofstudy;
     private String campus;
 
-    public Integer getIdmasterproeven() {return idmasterproeven;}
-    public void setIdmasterproeven(Integer idmasterproeven) {
-        this.idmasterproeven = idmasterproeven;
+    public Integer getIdthesis() {return idthesis;}
+    public void setIdthesis(Integer idmasterproeven) {
+        this.idthesis = idmasterproeven;
     }
 
     public String getName() {return name;}

@@ -26,8 +26,8 @@ public class ThesisController {
 
     //TODO - Delete
     @PostMapping(path="/delete")
-    public @ResponseBody String deleteThesis (@RequestParam int id) {
-        thesisRepository.deleteById(id);
+    public @ResponseBody String deleteThesis (@RequestParam int thesisid) {
+        thesisRepository.deleteById(thesisid);
         return "Deleted";
     }
 

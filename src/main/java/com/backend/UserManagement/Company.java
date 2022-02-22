@@ -1,4 +1,4 @@
-package com.backend.UserManagement;
+package com.authenticatie;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -6,32 +6,31 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 @Entity // This tells Hibernate to make a table out of this class
-public class Student {
+public class Company {
     @Id
     @GeneratedValue(strategy=GenerationType.AUTO)
-    private Integer idstudent;
-    private String name;
-    private String surname;
+    private Integer idcompany;
+    private String companyname;
+    private String contactname;
     private String mail;
     private Integer tel;
     private String adress;
-    private String fieldofstudy;
 
-    public Integer getId() {return idstudent;}
-    public void setId(Integer idstudent) {
-        this.idstudent = idstudent;
-    }
-
-    public String getName() {return name;}
-    public void setName(String name) {
-        this.name = name;
+    public Integer getId() {return idcompany;}
+    public void setId(Integer idcompany) {
+        this.idcompany = idcompany;
     }
 
     public String getSurname() {
-        return surname;
+        return companyname;
     }
-    public void setSurname(String surname) {
-        this.surname = surname;
+    public void setSurname(String companyname) {
+        this.companyname = companyname;
+    }
+
+    public String getName() {return contactname;}
+    public void setName(String contactname) {
+        this.contactname = contactname;
     }
 
     public String getmail() {
@@ -48,7 +47,4 @@ public class Student {
     public void setAdress(String adress) {
         this.adress = adress;
     }
-
-    public String getFieldOfStudy() {return fieldofstudy;}
-    public void setFieldOfStudy(String fieldofstudy) {this.fieldofstudy = fieldofstudy;}
 }
