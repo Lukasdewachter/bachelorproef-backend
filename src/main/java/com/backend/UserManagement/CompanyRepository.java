@@ -1,4 +1,4 @@
-package com.authenticatie;
+package com.backend.UserManagement;
 
 import org.springframework.data.repository.CrudRepository;
 
