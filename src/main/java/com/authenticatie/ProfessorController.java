@@ -26,8 +26,8 @@ public class ProfessorController {
 
     //TODO - Delete
     @PostMapping(path="/delete")
-    public @ResponseBody String deleteProfessor (@RequestParam int id) {
-        professorRepository.deleteById(id);
+    public @ResponseBody String deleteProfessor (@RequestParam int professorid) {
+        professorRepository.deleteById(professorid);
         return "Deleted";
     }
 

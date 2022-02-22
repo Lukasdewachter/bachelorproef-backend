@@ -26,8 +26,8 @@ public class CompanyController {
 
     //TODO - Delete
     @PostMapping(path="/delete")
-    public @ResponseBody String deleteCompany (@RequestParam int id) {
-        companyRepository.deleteById(id);
+    public @ResponseBody String deleteCompany (@RequestParam int companyid) {
+        companyRepository.deleteById(companyid);
         return "Deleted";
     }
 
