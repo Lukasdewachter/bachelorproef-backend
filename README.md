@@ -18,3 +18,47 @@ Gegevens voor de lokale DB:
 ## Authenticatie
 Aparte package
 
+### Login
+| VarType | VarName  |
+|---------|----------|
+| String  | Email    |
+| String  | Password |
+
+### Register
+Optie geven om in te schrijven als Student, Promotor/Begeleider/Masterproefcoordinator of Bedrijf
+
+* Student
+
+| VarType | VarName        |
+|---------|----------------|
+| String  | Email          |
+| String  | Name           |
+| String  | Surname        |
+| String  | Tel            |
+| String  | Adress         |
+| String  | Field_of_study |
+| String  | Campus         |
+
+* Student
+
+| VarType | VarName        |
+|---------|----------------|
+| String  | Email          |
+| String  | Name           |
+| String  | Surname        |
+| String  | Tel            |
+| String  | Adres          |
+| String  | Field_of_study |
+| String  | Campus         |
+| Boolean | Coordinator    |
+
+
+* Bedrijf
+
+| VarType | VarName         |
+|---------|-----------------|
+| String  | Email           |
+| String  | Company name    |
+| String  | Name Contact    |
+| String  | Surname Contact |
+| String  | Tel             | 
