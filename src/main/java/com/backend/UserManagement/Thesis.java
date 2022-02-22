@@ -1,4 +1,4 @@
-package com.authenticatie;
+package com.backend.UserManagement;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;

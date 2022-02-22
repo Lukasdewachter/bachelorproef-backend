@@ -1,4 +1,4 @@
-package com.authenticatie;
+package com.backend.UserManagement;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -9,31 +9,30 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.CrossOrigin;
 
 @Controller
-@RequestMapping(path="/thesis") // This means URL's start with (after Application path)
+@RequestMapping(path="/professor") // This means URL's start with professor (after Application path)
 @CrossOrigin(origins = "http://localhost:3000")
 
-public class ThesisController {
+public class ProfessorController {
     @Autowired
-    private ThesisRepository thesisRepository;
+    private ProfessorRepository professorRepository;
 
     @PostMapping(path="/add")
-    public @ResponseBody String addNewThesis (@RequestParam String name) {
-        Thesis t = new Thesis();
-        t.setName(name);
-        thesisRepository.save(t);
+    public @ResponseBody String addNewProfessor (@RequestParam String name) {
+        Professor n = new Professor();
+        n.setName(name);
+        professorRepository.save(n);
         return "Saved";
     }
 
-    //TODO - Delete
     @PostMapping(path="/delete")
-    public @ResponseBody String deleteThesis (@RequestParam int id) {
-        thesisRepository.deleteById(id);
+    public @ResponseBody String deleteProfessor (@RequestParam int id) {
+        professorRepository.deleteById(id);
         return "Deleted";
     }
 
     @GetMapping(path="/all")
-    public @ResponseBody Iterable<Thesis> getAllThesis() {
+    public @ResponseBody Iterable<Professor> getAllProfessors() {
         // This returns a JSON or XML with the users
-        return thesisRepository.findAll();
+        return professorRepository.findAll();
     }
 }

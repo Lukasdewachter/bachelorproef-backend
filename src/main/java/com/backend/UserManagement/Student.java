@@ -1,4 +1,4 @@
-package com.authenticatie;
+package com.backend.UserManagement;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -6,22 +6,21 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 @Entity // This tells Hibernate to make a table out of this class
-public class Professor {
+public class Student {
     @Id
     @GeneratedValue(strategy=GenerationType.AUTO)
-    private Integer idprofessor;
+    private Integer idstudent;
     private String name;
     private String surname;
     private String mail;
     private Integer tel;
     private String adress;
     private String fieldofstudy;
-    private String campus;
     private boolean coordinator;
 
-    public Integer getId() {return idprofessor;}
-    public void setId(Integer idprofessor) {
-        this.idprofessor = idprofessor;
+    public Integer getId() {return idstudent;}
+    public void setId(Integer idstudent) {
+        this.idstudent = idstudent;
     }
 
     public String getName() {return name;}
@@ -53,9 +52,6 @@ public class Professor {
 
     public String getFieldOfStudy() {return fieldofstudy;}
     public void setFieldOfStudy(String fieldofstudy) {this.fieldofstudy = fieldofstudy;}
-
-    public String getCampus() {return campus;}
-    public void setCampus(String campus) {this.campus = campus;}
 
     public boolean getCoordinator() {
         return coordinator;
