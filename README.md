@@ -11,7 +11,7 @@ Gevolgde tutorial: [Getting Started - Spring IO](https://spring.io/guides/gs/acc
 
 ## MySQL - *JPA*
 Gegevens voor de lokale DB:  
-* Table: `masterproef_project`  
+* DB: `masterproef_project`  
 * User: `mp_backend`  
 * WW: `backend`
 
