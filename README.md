@@ -10,6 +10,11 @@ Gevolgde tutorial: [Getting Started - Spring IO](https://spring.io/guides/gs/acc
 4. Communicatie met de gebruikers
 
 ## MySQL - *JPA*
-Table: `demo_projectweek`  
-User: `DemoProjectweek`  
-WW: `demo`
+Gegevens voor de lokale DB:  
+* Table: `masterproef_project`  
+* User: `mp_backend`  
+* WW: `backend`
+
+## Authenticatie
+Aparte package
+
