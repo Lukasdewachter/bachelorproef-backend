@@ -16,8 +16,8 @@ public class Thesis {
     private String campus;
 
     public Integer getIdthesis() {return idthesis;}
-    public void setIdthesis(Integer idmasterproeven) {
-        this.idthesis = idmasterproeven;
+    public void setIdthesis(Integer idThesis) {
+        this.idthesis = idThesis;
     }
 
     public String getName() {return name;}
