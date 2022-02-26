@@ -17,9 +17,21 @@ public class StudentController {
     private StudentRepository studentRepository;
 
     @PostMapping(path="/add")
-    public @ResponseBody String addNewStudent (@RequestParam String name) {
+    public @ResponseBody String addNewStudent (
+            @RequestParam String name,
+            @RequestParam String surname,
+            @RequestParam int tel,
+            @RequestParam String adress,
+            @RequestParam String fieldOfStudy,
+            @RequestParam String mail
+            ) {
         Student n = new Student();
         n.setName(name);
+        n.setSurname(surname);
+        n.setTel(tel);
+        n.setAdress(adress);
+        n.setFieldOfStudy(fieldOfStudy);
+        n.setMail(mail);
         studentRepository.save(n);
         return "Saved";
     }
