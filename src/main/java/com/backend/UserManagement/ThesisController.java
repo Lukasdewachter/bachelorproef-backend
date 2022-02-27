@@ -17,17 +17,25 @@ public class ThesisController {
     private ThesisRepository thesisRepository;
 
     @PostMapping(path="/add")
-    public @ResponseBody String addNewThesis (@RequestParam String name) {
+    public @ResponseBody String addNewThesis (
+            @RequestParam String name,
+            @RequestParam String description,
+            @RequestParam String fieldOfStudy,
+            @RequestParam String campus
+            ) {
         Thesis t = new Thesis();
         t.setName(name);
+        t.setDescription(description);
+        t.setFieldOfStudy(fieldOfStudy);
+        t.setCampus(campus);
         thesisRepository.save(t);
         return "Saved";
     }
 
     //TODO - Delete
     @PostMapping(path="/delete")
-    public @ResponseBody String deleteThesis (@RequestParam int thesisid) {
-        thesisRepository.deleteById(thesisid);
+    public @ResponseBody String deleteThesis (@RequestParam int idThesis) {
+        thesisRepository.deleteById(idThesis);
         return "Deleted";
     }
 

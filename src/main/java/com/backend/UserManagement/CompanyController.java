@@ -18,17 +18,27 @@ public class CompanyController {
     private CompanyRepository companyRepository;
 
     @PostMapping(path="/add")
-    public @ResponseBody String addNewCompany (@RequestParam String companyname) {
+    public @ResponseBody String addNewCompany (
+            @RequestParam String companyName,
+            @RequestParam String contactName,
+            @RequestParam String mail,
+            @RequestParam Integer tel,
+            @RequestParam String adress
+    ) {
         Company c = new Company();
-        c.setName(companyname);
+        c.setCompanyName(companyName);
+        c.setAdress(adress);
+        c.setContactName(contactName);
+        c.setTel(tel);
+        c.setMail(mail);
         companyRepository.save(c);
         return "Saved";
     }
 
     //TODO - Delete
     @PostMapping(path="/delete")
-    public @ResponseBody String deleteCompany (@RequestParam int companyid) {
-        companyRepository.deleteById(companyid);
+    public @ResponseBody String deleteCompany (@RequestParam int idCompany) {
+        companyRepository.deleteById(idCompany);
         return "Deleted";
     }
 

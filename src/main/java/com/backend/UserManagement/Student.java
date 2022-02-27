@@ -9,17 +9,17 @@ import javax.persistence.Id;
 public class Student {
     @Id
     @GeneratedValue(strategy=GenerationType.AUTO)
-    private Integer idstudent;
+    private Integer idStudent;
     private String name;
     private String surname;
     private String mail;
     private Integer tel;
     private String adress;
-    private String fieldofstudy;
+    private String fieldOfStudy;
 
-    public Integer getId() {return idstudent;}
-    public void setId(Integer idstudent) {
-        this.idstudent = idstudent;
+    public Integer getIdStudent() {return idStudent;}
+    public void setId(Integer idStudent) {
+        this.idStudent = idStudent;
     }
 
     public String getName() {return name;}
@@ -34,7 +34,7 @@ public class Student {
         this.surname = surname;
     }
 
-    public String getmail() {
+    public String getMail() {
         return mail;
     }
     public void setMail(String mail) {this.mail = mail;}
@@ -49,6 +49,6 @@ public class Student {
         this.adress = adress;
     }
 
-    public String getFieldOfStudy() {return fieldofstudy;}
-    public void setFieldOfStudy(String fieldofstudy) {this.fieldofstudy = fieldofstudy;}
+    public String getFieldOfStudy() {return fieldOfStudy;}
+    public void setFieldOfStudy(String fieldofstudy) {this.fieldOfStudy = fieldofstudy;}
 }

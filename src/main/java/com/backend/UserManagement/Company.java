@@ -9,31 +9,31 @@ import javax.persistence.Id;
 public class Company {
     @Id
     @GeneratedValue(strategy=GenerationType.AUTO)
-    private Integer idcompany;
-    private String companyname;
-    private String contactname;
+    private Integer idCompany;
+    private String companyName;
+    private String contactName;
     private String mail;
     private Integer tel;
     private String adress;
 
-    public Integer getId() {return idcompany;}
-    public void setId(Integer idcompany) {
-        this.idcompany = idcompany;
+    public Integer getIdCompany() {return idCompany;}
+    public void setIdCompany(Integer idcompany) {
+        this.idCompany = idcompany;
     }
 
-    public String getSurname() {
-        return companyname;
+    public String getCompanyName() {
+        return companyName;
     }
-    public void setSurname(String companyname) {
-        this.companyname = companyname;
-    }
-
-    public String getName() {return contactname;}
-    public void setName(String contactname) {
-        this.contactname = contactname;
+    public void setCompanyName(String companyname) {
+        this.companyName = companyname;
     }
 
-    public String getmail() {
+    public String getContactName() {return contactName;}
+    public void setContactName(String contactname) {
+        this.contactName = contactname;
+    }
+
+    public String getMail() {
         return mail;
     }
     public void setMail(String mail) {this.mail = mail;}

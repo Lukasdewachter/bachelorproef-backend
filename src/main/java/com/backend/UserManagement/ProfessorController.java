@@ -17,16 +17,33 @@ public class ProfessorController {
     private ProfessorRepository professorRepository;
 
     @PostMapping(path="/add")
-    public @ResponseBody String addNewProfessor (@RequestParam String name) {
+    public @ResponseBody String addNewProfessor (
+            @RequestParam String name,
+            @RequestParam String surname,
+            @RequestParam String mail,
+            @RequestParam Integer tel,
+            @RequestParam String adress,
+            @RequestParam String fieldOfStudy,
+            @RequestParam String campus,
+            @RequestParam boolean coordinator
+            ){
         Professor n = new Professor();
         n.setName(name);
+        n.setSurname(surname);
+        n.setMail(mail);
+        n.setTel(tel);
+        n.setAdress(adress);
+        n.setFieldOfStudy(fieldOfStudy);
+        n.setCampus(campus);
+        n.setCoordinator(coordinator);
+
         professorRepository.save(n);
         return "Saved";
     }
 
     @PostMapping(path="/delete")
-    public @ResponseBody String deleteProfessor (@RequestParam int professorid) {
-        professorRepository.deleteById(professorid);
+    public @ResponseBody String deleteProfessor (@RequestParam int idProfessor) {
+        professorRepository.deleteById(idProfessor);
         return "Deleted";
     }
 
