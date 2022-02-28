@@ -20,8 +20,8 @@ public class Professor {
     private boolean coordinator;
 
     public Integer getIdProfessor() {return idProfessor;}
-    public void setIdProfessor(Integer idprofessor) {
-        this.idProfessor = idprofessor;
+    public void setIdProfessor(Integer idProfessor) {
+        this.idProfessor = idProfessor;
     }
 
     public String getName() {return name;}

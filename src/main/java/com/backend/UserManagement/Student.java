@@ -18,7 +18,7 @@ public class Student {
     private String fieldOfStudy;
 
     public Integer getIdStudent() {return idStudent;}
-    public void setId(Integer idStudent) {
+    public void setIdStudent(Integer idStudent) {
         this.idStudent = idStudent;
     }
 
@@ -50,5 +50,5 @@ public class Student {
     }
 
     public String getFieldOfStudy() {return fieldOfStudy;}
-    public void setFieldOfStudy(String fieldofstudy) {this.fieldOfStudy = fieldofstudy;}
+    public void setFieldOfStudy(String fieldOfStudy) {this.fieldOfStudy = fieldOfStudy;}
 }
