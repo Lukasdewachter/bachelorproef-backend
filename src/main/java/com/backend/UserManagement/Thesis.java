@@ -33,7 +33,7 @@ public class Thesis {
     }
 
     public String getFieldOfStudy() {return fieldOfStudy;}
-    public void setFieldOfStudy(String fieldofstudy) {this.fieldOfStudy = fieldofstudy;}
+    public void setFieldOfStudy(String fieldOfStudy) {this.fieldOfStudy = fieldOfStudy;}
 
     public String getCampus() {
         return campus;

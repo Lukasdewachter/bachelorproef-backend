@@ -17,7 +17,7 @@ public class Professor {
     private String adress;
     private String fieldOfStudy;
     private String campus;
-    private boolean coordinator;
+    private int coordinator;
 
     public Integer getIdProfessor() {return idProfessor;}
     public void setIdProfessor(Integer idProfessor) {
@@ -57,8 +57,8 @@ public class Professor {
     public String getCampus() {return campus;}
     public void setCampus(String campus) {this.campus = campus;}
 
-    public boolean getCoordinator() {
+    public int getCoordinator() {
         return coordinator;
     }
-    public void setCoordinator(boolean coordinator) {this.coordinator = coordinator;}
+    public void setCoordinator(int coordinator) {this.coordinator = coordinator;}
 }

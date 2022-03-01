@@ -25,7 +25,7 @@ public class ProfessorController {
             @RequestParam String adress,
             @RequestParam String fieldOfStudy,
             @RequestParam String campus,
-            @RequestParam boolean coordinator
+            @RequestParam int coordinator
             ){
         Professor n = new Professor();
         n.setName(name);
