@@ -14,7 +14,7 @@ public class Professor {
     private String surname;
     private String mail;
     private Integer tel;
-    private String adress;
+    private String address;
     private String fieldOfStudy;
     private String campus;
     private int coordinator;
@@ -46,9 +46,9 @@ public class Professor {
         this.tel = tel;
     }
 
-    public String getAdress() {return adress;}
-    public void setAdress(String adress) {
-        this.adress = adress;
+    public String getAddress() {return address;}
+    public void setAddress(String address) {
+        this.address = address;
     }
 
     public String getFieldOfStudy() {return fieldOfStudy;}

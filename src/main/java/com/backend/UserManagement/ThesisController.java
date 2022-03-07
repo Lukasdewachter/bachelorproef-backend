@@ -32,7 +32,6 @@ public class ThesisController {
         return "Saved";
     }
 
-    //TODO - Delete
     @PostMapping(path="/delete")
     public @ResponseBody String deleteThesis (@RequestParam int idThesis) {
         thesisRepository.deleteById(idThesis);

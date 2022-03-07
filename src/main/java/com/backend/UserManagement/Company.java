@@ -14,7 +14,7 @@ public class Company {
     private String contactName;
     private String mail;
     private Integer tel;
-    private String adress;
+    private String address;
 
     public Integer getIdCompany() {return idCompany;}
     public void setIdCompany(Integer idcompany) {
@@ -43,8 +43,8 @@ public class Company {
         this.tel = tel;
     }
 
-    public String getAdress() {return adress;}
-    public void setAdress(String adress) {
-        this.adress = adress;
+    public String getAddress() {return address;}
+    public void setAddress(String address) {
+        this.address = address;
     }
 }

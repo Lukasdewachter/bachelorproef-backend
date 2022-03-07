@@ -22,7 +22,7 @@ public class ProfessorController {
             @RequestParam String surname,
             @RequestParam String mail,
             @RequestParam Integer tel,
-            @RequestParam String adress,
+            @RequestParam String address,
             @RequestParam String fieldOfStudy,
             @RequestParam String campus,
             @RequestParam int coordinator
@@ -32,7 +32,7 @@ public class ProfessorController {
         n.setSurname(surname);
         n.setMail(mail);
         n.setTel(tel);
-        n.setAdress(adress);
+        n.setAddress(address);
         n.setFieldOfStudy(fieldOfStudy);
         n.setCampus(campus);
         n.setCoordinator(coordinator);

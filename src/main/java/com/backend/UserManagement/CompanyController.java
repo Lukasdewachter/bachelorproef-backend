@@ -23,11 +23,11 @@ public class CompanyController {
             @RequestParam String contactName,
             @RequestParam String mail,
             @RequestParam Integer tel,
-            @RequestParam String adress
+            @RequestParam String address
     ) {
         Company c = new Company();
         c.setCompanyName(companyName);
-        c.setAdress(adress);
+        c.setAddress(address);
         c.setContactName(contactName);
         c.setTel(tel);
         c.setMail(mail);
@@ -35,7 +35,6 @@ public class CompanyController {
         return "Saved";
     }
 
-    //TODO - Delete
     @PostMapping(path="/delete")
     public @ResponseBody String deleteCompany (@RequestParam int idCompany) {
         companyRepository.deleteById(idCompany);

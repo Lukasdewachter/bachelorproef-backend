@@ -21,7 +21,7 @@ public class StudentController {
             @RequestParam String name,
             @RequestParam String surname,
             @RequestParam int tel,
-            @RequestParam String adress,
+            @RequestParam String address,
             @RequestParam String fieldOfStudy,
             @RequestParam String mail
             ) {
@@ -29,14 +29,13 @@ public class StudentController {
         n.setName(name);
         n.setSurname(surname);
         n.setTel(tel);
-        n.setAdress(adress);
+        n.setAddress(address);
         n.setFieldOfStudy(fieldOfStudy);
         n.setMail(mail);
         studentRepository.save(n);
         return "Saved";
     }
 
-    //TODO - Delete
     @PostMapping(path="/delete")
     public @ResponseBody String deleteStudent (@RequestParam int idStudent) {
         studentRepository.deleteById(idStudent);
