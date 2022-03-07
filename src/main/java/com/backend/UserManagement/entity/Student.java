@@ -1,4 +1,4 @@
-package com.backend.UserManagement;
+package com.backend.UserManagement.entity;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -16,6 +16,20 @@ public class Student {
     private Integer tel;
     private String address;
     private String fieldOfStudy;
+    
+    public Student(){
+        
+    }
+    
+    public Student(String name, String surname, String mail, Integer tel, String address, String fieldOfStudy){
+        super();
+        this.name = name;
+        this.surname = surname;
+        this.mail = mail;
+        this.tel = tel;
+        this.address = address;
+        this.fieldOfStudy = fieldOfStudy;
+    }
 
     public Integer getIdStudent() {return idStudent;}
     public void setIdStudent(Integer idStudent) {

@@ -1,5 +1,6 @@
-package com.backend.UserManagement;
+package com.backend.UserManagement.repository;
 
+import com.backend.UserManagement.entity.Thesis;
 import org.springframework.data.repository.CrudRepository;
 
 // This will be AUTO IMPLEMENTED by Spring into a Bean called StudentRepository

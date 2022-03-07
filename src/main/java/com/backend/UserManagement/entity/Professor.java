@@ -1,4 +1,4 @@
-package com.backend.UserManagement;
+package com.backend.UserManagement.entity;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;

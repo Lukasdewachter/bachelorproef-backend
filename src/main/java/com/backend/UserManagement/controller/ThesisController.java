@@ -1,4 +1,6 @@
-package com.backend.UserManagement;
+package com.backend.UserManagement.controller;
+import com.backend.UserManagement.entity.Thesis;
+import com.backend.UserManagement.repository.ThesisRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
