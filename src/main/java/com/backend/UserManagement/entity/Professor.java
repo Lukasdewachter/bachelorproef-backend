@@ -17,7 +17,7 @@ public class Professor {
     private String address;
     private String fieldOfStudy;
     private String campus;
-    private int coordinator;
+    private Integer coordinator;
 
     public Integer getIdProfessor() {return idProfessor;}
     public void setIdProfessor(Integer idProfessor) {
