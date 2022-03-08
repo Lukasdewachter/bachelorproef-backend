@@ -57,7 +57,7 @@ public class Professor {
     public String getCampus() {return campus;}
     public void setCampus(String campus) {this.campus = campus;}
 
-    public int getCoordinator() {
+    public Integer getCoordinator() {
         return coordinator;
     }
     public void setCoordinator(int coordinator) {this.coordinator = coordinator;}
