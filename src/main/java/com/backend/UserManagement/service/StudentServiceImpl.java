@@ -59,6 +59,10 @@ public class StudentServiceImpl implements StudentService {
             existingStudent.setFieldOfStudy(student.getFieldOfStudy());
         }
 
+        if (Objects.nonNull(student.getCampus()) && !"".equalsIgnoreCase(student.getCampus())) {
+            existingStudent.setCampus(student.getCampus());
+        }
+
         return studentRepository.save(existingStudent);
     }
 

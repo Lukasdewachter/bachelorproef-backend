@@ -16,12 +16,13 @@ public class Student {
     private Integer tel;
     private String address;
     private String fieldOfStudy;
+    private String campus;
     
     public Student(){
         
     }
     
-    public Student(String name, String surname, String mail, Integer tel, String address, String fieldOfStudy){
+    public Student(String name, String surname, String mail, Integer tel, String address, String fieldOfStudy, String campus){
         super();
         this.name = name;
         this.surname = surname;
@@ -29,6 +30,7 @@ public class Student {
         this.tel = tel;
         this.address = address;
         this.fieldOfStudy = fieldOfStudy;
+        this.campus = campus;
     }
 
     public Integer getIdStudent() {return idStudent;}
@@ -65,4 +67,7 @@ public class Student {
 
     public String getFieldOfStudy() {return fieldOfStudy;}
     public void setFieldOfStudy(String fieldOfStudy) {this.fieldOfStudy = fieldOfStudy;}
+    
+    public String getCampus() {return campus;}
+    public void setCampus(String campus) {this.campus = campus;}
 }

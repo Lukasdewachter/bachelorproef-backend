@@ -1,10 +1,7 @@
 package com.backend.UserManagement.controller;
 import com.backend.UserManagement.entity.Student;
 import com.backend.UserManagement.service.StudentService;
-import com.backend.UserManagement.repository.StudentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
