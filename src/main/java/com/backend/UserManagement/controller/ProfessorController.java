@@ -1,57 +1,44 @@
 package com.backend.UserManagement.controller;
 import com.backend.UserManagement.entity.Professor;
+import com.backend.UserManagement.entity.Professor;
 import com.backend.UserManagement.repository.ProfessorRepository;
+import com.backend.UserManagement.service.ProfessorService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.*;
 
-@Controller
+import java.util.List;
+
+@RestController
 @RequestMapping(path="/professor") // This means URL's start with professor (after Application path)
 @CrossOrigin(origins = "http://localhost:3000")
 
 public class ProfessorController {
     @Autowired
-    private ProfessorRepository professorRepository;
+    private ProfessorService professorService;
 
+    // Add operation
     @PostMapping(path="/add")
-    public @ResponseBody String addNewProfessor (
-            @RequestParam String name,
-            @RequestParam String surname,
-            @RequestParam String mail,
-            @RequestParam Integer tel,
-            @RequestParam String address,
-            @RequestParam String fieldOfStudy,
-            @RequestParam String campus,
-            @RequestParam int coordinator
-            ){
-        Professor n = new Professor();
-        n.setName(name);
-        n.setSurname(surname);
-        n.setMail(mail);
-        n.setTel(tel);
-        n.setAddress(address);
-        n.setFieldOfStudy(fieldOfStudy);
-        n.setCampus(campus);
-        n.setCoordinator(coordinator);
-
-        professorRepository.save(n);
-        return "Saved";
+    public Professor saveProfessor(@RequestBody Professor professor) {
+        return professorService.saveProfessor(professor);
     }
 
-    @PostMapping(path="/delete")
+    // Delete operation
+    @DeleteMapping(path="/delete")
     public @ResponseBody String deleteProfessor (@RequestParam int idProfessor) {
-        professorRepository.deleteById(idProfessor);
+        professorService.deleteProfessorById(idProfessor);
         return "Deleted";
     }
 
+    // Get all operation
     @GetMapping(path="/all")
-    public @ResponseBody Iterable<Professor> getAllProfessors() {
-        // This returns a JSON or XML with the users
-        return professorRepository.findAll();
+    public List<Professor> fetchProfessorList() {
+        return professorService.getAllProfessor();
+    }
+
+    // Update operation
+    @PutMapping("/update/{id}")
+    public Professor updateProfessor(@RequestBody Professor professor, @PathVariable("id") int idProfessor) {
+        return professorService.updateProfessor(professor, idProfessor);
     }
 }
