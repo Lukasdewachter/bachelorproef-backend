@@ -1,8 +1,10 @@
 package com.backend.UserManagement.service;
 
-import com.backend.UserManagement.entity.Professor;
-import com.backend.UserManagement.repository.ProfessorRepository;
+import com.backend.UserManagement.entity.User;
+import com.backend.UserManagement.repository.RolesRepository;
+import com.backend.UserManagement.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -12,30 +14,36 @@ import java.util.Objects;
 public class ProfessorServiceImpl implements ProfessorService {
 
     @Autowired
-    private ProfessorRepository professorRepository;
+    private UserRepository userRepository;
+
+    @Autowired
+    private RolesRepository roleService;
+
+    @Autowired
+    private PasswordEncoder bcryptEncoder;
 
 
     @Override
-    public List<Professor> getAllProfessor() {
-        return (List<Professor>) professorRepository.findAll();
+    public List<User> getAllProfessor() {
+        return (List<User>) userRepository.findByRole(roleService.findByName("Professor"));
     }
 
     @Override
-    public Professor saveProfessor(Professor professor) {
-        return professorRepository.save(professor);
+    public User saveProfessor(User professor) {
+        return userRepository.save(professor);
     }
 
     @Override
-    public Professor getProfessorById(int idProfessor) {
-        return professorRepository.findById(idProfessor).get();
+    public User getProfessorById(long id) {
+        return userRepository.findById(id).get();
     }
 
     @Override
-    public Professor updateProfessor(Professor professor, int idProfessor) {
-        Professor existingProfessor = professorRepository.findById(idProfessor).get();
+    public User updateProfessor(User professor, long id) {
+        User existingProfessor = userRepository.findById(id).get();
 
-        if (Objects.nonNull(professor.getName()) && !"".equalsIgnoreCase(professor.getName())) {
-            existingProfessor.setName(professor.getName());
+        if (Objects.nonNull(professor.getFirstName()) && !"".equalsIgnoreCase(professor.getFirstName())) {
+            existingProfessor.setFirstName(professor.getFirstName());
         }
 
         if (Objects.nonNull(professor.getSurname()) && !"".equalsIgnoreCase(professor.getSurname())) {
@@ -66,11 +74,11 @@ public class ProfessorServiceImpl implements ProfessorService {
             existingProfessor.setCoordinator(professor.getCoordinator());
         }
 
-        return professorRepository.save(existingProfessor);
+        return userRepository.save(existingProfessor);
     }
 
     @Override
-    public void deleteProfessorById(int idProfessor) {
-        professorRepository.deleteById(idProfessor);
+    public void deleteProfessorById(long id) {
+        userRepository.deleteById(id);
     }
 }

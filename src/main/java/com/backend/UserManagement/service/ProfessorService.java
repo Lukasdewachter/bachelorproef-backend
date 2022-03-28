@@ -1,18 +1,18 @@
 package com.backend.UserManagement.service;
 
-import com.backend.UserManagement.entity.Professor;
+import com.backend.UserManagement.entity.User;
 
 import java.util.List;
 
 public interface ProfessorService {
-    List<Professor> getAllProfessor();
+    List<User> getAllProfessor();
 
-    Professor saveProfessor(Professor professor);
+    User saveProfessor(User professor);
 
-    Professor getProfessorById(int idProfessor);
+    User getProfessorById(long idProfessor);
 
-    Professor updateProfessor(Professor professor, int idProfessor);
+    User updateProfessor(User professor, long idProfessor);
 
-    void deleteProfessorById(int idProfessor);
+    void deleteProfessorById(long idProfessor);
 
 }

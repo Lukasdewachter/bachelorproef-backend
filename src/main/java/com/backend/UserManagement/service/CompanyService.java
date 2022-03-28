@@ -1,18 +1,18 @@
 package com.backend.UserManagement.service;
 
-import com.backend.UserManagement.entity.Company;
+import com.backend.UserManagement.entity.User;
 
 import java.util.List;
 
 public interface CompanyService {
-    List<Company> getAllCompany();
+    List<User> getAllCompany();
 
-    Company saveCompany(Company company);
+    User saveCompany(User company);
 
-    Company getCompanyById(int idCompany);
+    User getCompanyById(long id);
 
-    Company updateCompany(Company company, int idCompany);
+    User updateCompany(User company, long id);
 
-    void deleteCompanyById(int idCompany);
+    void deleteCompanyById(long id);
 
 }

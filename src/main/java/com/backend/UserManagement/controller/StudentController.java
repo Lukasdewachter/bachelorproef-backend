@@ -1,7 +1,8 @@
 package com.backend.UserManagement.controller;
-import com.backend.UserManagement.entity.Student;
+import com.backend.UserManagement.entity.User;
 import com.backend.UserManagement.service.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -16,27 +17,28 @@ public class StudentController {
 
     // Add operation
     @PostMapping("/add")
-    public Student saveStudent( @RequestBody Student student) {
+    public User saveStudent(@RequestBody User student) {
         return studentService.saveStudent(student);
     }
 
     // Delete operation
     @DeleteMapping(path="/delete")
-    public @ResponseBody String deleteStudent (@RequestParam int idStudent) {
-        studentService.deleteStudentById(idStudent);
+    public @ResponseBody String deleteStudent (@RequestParam long id) {
+        studentService.deleteStudentById(id);
         return "Deleted";
     }
 
     // Get all operation
     @GetMapping(path="/all")
-    public List<Student> fetchStudentList() {
+    public List<User> fetchStudentList() {
         return studentService.getAllStudents();
     }
 
     // Update operation
+    @PreAuthorize("hasRole('Student')")
     @PutMapping("/update/{id}")
-    public Student updateStudent(@RequestBody Student student, @PathVariable("id") int idStudent) {
-        return studentService.updateStudent(student, idStudent);
+    public User updateStudent(@RequestBody User student, @PathVariable("id") long id) {
+        return studentService.updateStudent(student, id);
     }
 
 }

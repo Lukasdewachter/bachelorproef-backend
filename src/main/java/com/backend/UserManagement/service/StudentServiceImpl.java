@@ -1,42 +1,53 @@
 package com.backend.UserManagement.service;
 
-import com.backend.UserManagement.entity.Student;
-import com.backend.UserManagement.repository.StudentRepository;
-
 import java.util.List;
 import java.util.Objects;
 
+import com.backend.UserManagement.entity.Roles;
+import com.backend.UserManagement.entity.User;
+import com.backend.UserManagement.repository.RolesRepository;
+import com.backend.UserManagement.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 @Service
 public class StudentServiceImpl implements StudentService {
 
     @Autowired
-    private StudentRepository studentRepository;
+    private UserRepository userRepository;
 
+    @Autowired
+    private RolesRepository roleService;
+
+    @Autowired
+    private PasswordEncoder bcryptEncoder;
 
     @Override
-    public List<Student> getAllStudents() {
-        return (List<Student>) studentRepository.findAll();
+    public List<User> getAllStudents() {
+        return (List<User>) userRepository.findByRole(roleService.findByName("Student"));
     }
 
     @Override
-    public Student saveStudent(Student student) {
-        return studentRepository.save(student);
+    public User saveStudent(User student) {
+        User newCompany = new User(student);
+        //newCompany.setPassword(bcryptEncoder.encode(newCompany.getPassword()));
+        Roles role = roleService.findByName("Company");
+        newCompany.setRole(role);
+        return userRepository.save(newCompany);
     }
 
     @Override
-    public Student getStudentById(int idStudent) {
-        return studentRepository.findById(idStudent).get();
+    public User getStudentById(long id) {
+        return userRepository.findById(id).get();
     }
 
     @Override
-    public Student updateStudent(Student student, int idStudent) {
-        Student existingStudent = studentRepository.findById(idStudent).get();
+    public User updateStudent(User student, long id) {
+        User existingStudent = userRepository.findById(id).get();
 
-        if (Objects.nonNull(student.getName()) && !"".equalsIgnoreCase(student.getName())) {
-            existingStudent.setName(student.getName());
+        if (Objects.nonNull(student.getFirstName()) && !"".equalsIgnoreCase(student.getFirstName())) {
+            existingStudent.setFirstName(student.getFirstName());
         }
 
         if (Objects.nonNull(student.getSurname()) && !"".equalsIgnoreCase(student.getSurname())) {
@@ -63,11 +74,11 @@ public class StudentServiceImpl implements StudentService {
             existingStudent.setCampus(student.getCampus());
         }
 
-        return studentRepository.save(existingStudent);
+        return userRepository.save(existingStudent);
     }
 
     @Override
-    public void deleteStudentById(int idStudent) {
-        studentRepository.deleteById(idStudent);
+    public void deleteStudentById(long id) {
+        userRepository.deleteById(id);
     }
 }

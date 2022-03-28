@@ -1,7 +1,9 @@
 package com.backend.UserManagement.service;
 
-import com.backend.UserManagement.entity.Admin;
-import com.backend.UserManagement.repository.AdminRepository;
+import com.backend.UserManagement.entity.Roles;
+import com.backend.UserManagement.entity.User;
+import com.backend.UserManagement.repository.RolesRepository;
+import com.backend.UserManagement.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -13,39 +15,44 @@ import java.util.Objects;
 public class AdminServiceImpl implements AdminService {
 
     @Autowired
-    private AdminRepository adminRepository;
+    private UserRepository userRepository;
+
+    @Autowired
+    private RolesRepository roleService;
 
     @Autowired
     private PasswordEncoder bcryptEncoder;
 
     @Override
-    public List<Admin> getAllAdmin() {
-        return (List<Admin>) adminRepository.findAll();
+    public List<User> getAllAdmin() {
+        return (List<User>) userRepository.findByRole(roleService.findByName("Company"));
     }
 
     @Override
-    public Admin saveAdmin(Admin admin) {
-        Admin newAdmin = new Admin(admin);
+    public User saveAdmin(User admin) {
+        User newAdmin = new User(admin);
         newAdmin.setPassword(bcryptEncoder.encode(admin.getPassword()));
-        return adminRepository.save(newAdmin);
+        Roles role = roleService.findByName("Admin");
+        newAdmin.setRole(role);
+        return userRepository.save(newAdmin);
     }
 
     @Override
-    public Admin getAdminById(int idAdmin) {
-        return adminRepository.findById(idAdmin).get();
+    public User getAdminById(long id) {
+        return userRepository.findById(id).get();
     }
 
     @Override
-    public Admin getAdminByMail(String mail) {
-        return adminRepository.findByMail(mail);
+    public User getAdminByMail(String mail) {
+        return userRepository.findByMail(mail);
     }
 
     @Override
-    public Admin updateAdmin(Admin admin, int idAdmin) {
-        Admin existingAdmin = adminRepository.findById(idAdmin).get();
+    public User updateAdmin(User admin, long id) {
+        User existingAdmin = userRepository.findById(id).get();
 
-        if (Objects.nonNull(admin.getName()) && !"".equalsIgnoreCase(admin.getName())) {
-            existingAdmin.setName(admin.getName());
+        if (Objects.nonNull(admin.getFirstName()) && !"".equalsIgnoreCase(admin.getFirstName())) {
+            existingAdmin.setFirstName(admin.getFirstName());
         }
 
         if (Objects.nonNull(admin.getSurname()) && !"".equalsIgnoreCase(admin.getSurname())) {
@@ -56,11 +63,11 @@ public class AdminServiceImpl implements AdminService {
             existingAdmin.setMail(admin.getMail());
         }
 
-        return adminRepository.save(existingAdmin);
+        return userRepository.save(existingAdmin);
     }
 
     @Override
-    public void deleteAdminById(int idAdmin) {
-        adminRepository.deleteById(idAdmin);
+    public void deleteAdminById(long id) {
+        userRepository.deleteById(id);
     }
 }

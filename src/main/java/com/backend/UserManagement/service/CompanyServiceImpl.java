@@ -1,45 +1,60 @@
 package com.backend.UserManagement.service;
 
-import com.backend.UserManagement.entity.Company;
-import com.backend.UserManagement.repository.CompanyRepository;
+import com.backend.UserManagement.entity.Roles;
+import com.backend.UserManagement.entity.User;
+import com.backend.UserManagement.repository.RolesRepository;
+import com.backend.UserManagement.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.util.HashSet;
 import java.util.List;
 import java.util.Objects;
+import java.util.Set;
 
 @Service
 public class CompanyServiceImpl implements CompanyService {
 
     @Autowired
-    private CompanyRepository companyRepository;
+    private UserRepository userRepository;
 
+    @Autowired
+    private RolesRepository roleService;
+
+    @Autowired
+    private PasswordEncoder bcryptEncoder;
 
     @Override
-    public List<Company> getAllCompany() {
-        return (List<Company>) companyRepository.findAll();
+    public List<User> getAllCompany() {
+        return (List<User>) userRepository.findByRole(roleService.findByName("Company"));
     }
 
     @Override
-    public Company saveCompany(Company company) {
-        return companyRepository.save(company);
+    public User saveCompany(User company) {
+        User newCompany = new User(company);
+        //newCompany.setPassword(bcryptEncoder.encode(newCompany.getPassword()));
+        Roles role = roleService.findByName("Company");
+        newCompany.setRole(role);
+        return userRepository.save(newCompany);
     }
 
     @Override
-    public Company getCompanyById(int idCompany) {
-        return companyRepository.findById(idCompany).get();
+    public User getCompanyById(long id) {
+        return userRepository.findById(id).get();
     }
 
     @Override
-    public Company updateCompany(Company company, int idCompany) {
-        Company existingCompany = companyRepository.findById(idCompany).get();
+    public User updateCompany(User company, long id) {
+        User existingCompany = userRepository.findById(id).get();
 
         if (Objects.nonNull(company.getCompanyName()) && !"".equalsIgnoreCase(company.getCompanyName())) {
             existingCompany.setCompanyName(company.getCompanyName());
         }
 
-        if (Objects.nonNull(company.getContactName()) && !"".equalsIgnoreCase(company.getContactName())) {
-            existingCompany.setContactName(company.getContactName());
+        if (Objects.nonNull(company.getFirstName()) && !"".equalsIgnoreCase(company.getFirstName())) {
+            existingCompany.setFirstName(company.getFirstName());
         }
 
         if (Objects.nonNull(company.getMail()) && !"".equalsIgnoreCase(company.getMail())) {
@@ -54,11 +69,11 @@ public class CompanyServiceImpl implements CompanyService {
             existingCompany.setAddress(company.getAddress());
         }
 
-        return companyRepository.save(existingCompany);
+        return userRepository.save(existingCompany);
     }
 
     @Override
-    public void deleteCompanyById(int idCompany) {
-        companyRepository.deleteById(idCompany);
+    public void deleteCompanyById(long id) {
+        userRepository.deleteById(id);
     }
 }

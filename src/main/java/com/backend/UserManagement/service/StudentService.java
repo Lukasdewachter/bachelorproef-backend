@@ -1,18 +1,18 @@
 package com.backend.UserManagement.service;
 
-import com.backend.UserManagement.entity.Student;
+import com.backend.UserManagement.entity.User;
 
 import java.util.List;
 
 public interface StudentService {
-    List<Student> getAllStudents();
+    List<User> getAllStudents();
 
-    Student saveStudent(Student student);
+    User saveStudent(User student);
 
-    Student getStudentById(int idStudent);
+    User getStudentById(long id);
 
-    Student updateStudent(Student student, int idStudent);
+    User updateStudent(User student, long id);
 
-    void deleteStudentById(int idStudent);
+    void deleteStudentById(long id);
 
 }

@@ -2,7 +2,7 @@ package com.backend.Authentication.controller;
 
 import java.util.Objects;
 
-import com.backend.UserManagement.entity.Admin;
+import com.backend.UserManagement.entity.User;
 import com.backend.UserManagement.service.AdminService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -52,7 +52,7 @@ public class AuthenticationController {
     }
 
     @RequestMapping(value = "/register", method = RequestMethod.POST)
-    public ResponseEntity<?> saveAdmin(@RequestBody Admin admin) throws Exception {
+    public ResponseEntity<?> saveAdmin(@RequestBody User admin) throws Exception {
         return ResponseEntity.ok(adminService.saveAdmin(admin));
     }
 

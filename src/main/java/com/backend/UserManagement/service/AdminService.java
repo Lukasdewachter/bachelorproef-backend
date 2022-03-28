@@ -1,21 +1,19 @@
 package com.backend.UserManagement.service;
 
-import com.backend.UserManagement.entity.Admin;
-import com.backend.UserManagement.entity.Admin;
+import com.backend.UserManagement.entity.User;
 
 import java.util.List;
 
 public interface AdminService {
-    List<Admin> getAllAdmin();
+    List<User> getAllAdmin();
 
-    Admin saveAdmin(Admin admin);
+    User saveAdmin(User admin);
 
-    Admin getAdminById(int idAdmin);
+    User getAdminById(long id);
 
-    Admin getAdminByMail(String mail);
+    User getAdminByMail(String mail);
 
-    Admin updateAdmin(Admin admin, int idAdmin);
+    User updateAdmin(User admin, long id);
 
-    void deleteAdminById(int idAdmin);
-
+    void deleteAdminById(long id);
 }

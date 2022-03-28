@@ -1,6 +1,6 @@
 package com.backend.UserManagement.controller;
 
-import com.backend.UserManagement.entity.Company;
+import com.backend.UserManagement.entity.User;
 import com.backend.UserManagement.service.CompanyService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -17,26 +17,26 @@ public class CompanyController {
 
     // Add operation
     @PostMapping(path="/add")
-    public Company saveCompany(@RequestBody Company company) {
-        return companyService.saveCompany(company);
+    public User saveCompany(@RequestBody User user) {
+        return companyService.saveCompany(user);
     }
 
     // Delete operation
     @DeleteMapping(path="/delete")
-    public @ResponseBody String deleteCompany (@RequestParam int idCompany) {
-        companyService.deleteCompanyById(idCompany);
+    public @ResponseBody String deleteCompany (@RequestParam long id) {
+        companyService.deleteCompanyById(id);
         return "Deleted";
     }
 
     // Get all operation
     @GetMapping(path="/all")
-    public List<Company> fetchCompanyList() {
+    public List<User> fetchCompanyList() {
         return companyService.getAllCompany();
     }
 
     // Update operation
     @PutMapping("/update/{id}")
-    public Company updateCompany(@RequestBody Company company, @PathVariable("id") int idCompany) {
-        return companyService.updateCompany(company, idCompany);
+    public User updateCompany(@RequestBody User user, @PathVariable("id") int id) {
+        return companyService.updateCompany(user, id);
     }
 }

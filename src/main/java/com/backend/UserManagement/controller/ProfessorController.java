@@ -1,10 +1,7 @@
 package com.backend.UserManagement.controller;
-import com.backend.UserManagement.entity.Professor;
-import com.backend.UserManagement.entity.Professor;
-import com.backend.UserManagement.repository.ProfessorRepository;
+import com.backend.UserManagement.entity.User;
 import com.backend.UserManagement.service.ProfessorService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -19,7 +16,7 @@ public class ProfessorController {
 
     // Add operation
     @PostMapping(path="/add")
-    public Professor saveProfessor(@RequestBody Professor professor) {
+    public User saveProfessor(@RequestBody User professor) {
         return professorService.saveProfessor(professor);
     }
 
@@ -32,13 +29,13 @@ public class ProfessorController {
 
     // Get all operation
     @GetMapping(path="/all")
-    public List<Professor> fetchProfessorList() {
+    public List<User> fetchProfessorList() {
         return professorService.getAllProfessor();
     }
 
     // Update operation
     @PutMapping("/update/{id}")
-    public Professor updateProfessor(@RequestBody Professor professor, @PathVariable("id") int idProfessor) {
-        return professorService.updateProfessor(professor, idProfessor);
+    public User updateProfessor(@RequestBody User professor, @PathVariable("id") long id) {
+        return professorService.updateProfessor(professor, id);
     }
 }
