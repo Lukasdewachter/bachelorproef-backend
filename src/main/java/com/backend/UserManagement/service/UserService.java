@@ -7,6 +7,14 @@ import java.util.List;
 public interface UserService {
     List<User> getAllUsers();
 
+    List<User> getAllAdmin();
+
+    List<User> getAllCompany();
+
+    List<User> getAllProfessor();
+
+    List<User> getAllStudent();
+
     User saveUser(User user);
 
     User getUserById(long id);

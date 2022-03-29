@@ -25,7 +25,27 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public List<User> getAllUsers() {
+        return (List<User>) userRepository.findAll();
+    }
+
+    @Override
+    public List<User> getAllAdmin() {
+        return (List<User>) userRepository.findByRole(roleService.findByName("Admin"));
+    }
+
+    @Override
+    public List<User> getAllCompany() {
         return (List<User>) userRepository.findByRole(roleService.findByName("Company"));
+    }
+
+    @Override
+    public List<User> getAllStudent() {
+        return (List<User>) userRepository.findByRole(roleService.findByName("Student"));
+    }
+
+    @Override
+    public List<User> getAllProfessor() {
+        return (List<User>) userRepository.findByRole(roleService.findByName("Professor"));
     }
 
     @Override

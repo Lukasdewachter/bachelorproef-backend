@@ -1,11 +1,10 @@
 package com.backend.Authentication.service;
 
-import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Set;
 
 import com.backend.UserManagement.entity.User;
-import com.backend.UserManagement.service.AdminService;
+import com.backend.UserManagement.service.UserService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -16,11 +15,11 @@ import org.springframework.stereotype.Service;
 @Service
 public class UserDetailsService implements org.springframework.security.core.userdetails.UserDetailsService {
     @Autowired
-    private AdminService adminService;
+    private UserService userService;
 
     @Override
     public UserDetails loadUserByUsername(String mail) throws UsernameNotFoundException {
-        User admin = adminService.getAdminByMail(mail);
+        User admin = userService.getUserByMail(mail);
         if (admin == null) {
             throw new UsernameNotFoundException("User not found with username: " + mail);
         }
