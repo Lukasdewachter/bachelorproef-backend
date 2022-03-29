@@ -1,7 +1,8 @@
 package com.backend.UserManagement.controller;
-import com.backend.UserManagement.entity.Student;
-import com.backend.UserManagement.service.StudentService;
+import com.backend.UserManagement.entity.User;
+import com.backend.UserManagement.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -10,33 +11,35 @@ import java.util.List;
 @RequestMapping(path="/student") // This means URL's start with /student (after Application path)
 @CrossOrigin(origins = "http://localhost:3000")
 
+@PreAuthorize("hasAnyRole('Admin', 'Student')")
 public class StudentController {
     @Autowired
-    private StudentService studentService;
+    private UserService userService;
 
     // Add operation
     @PostMapping("/add")
-    public Student saveStudent( @RequestBody Student student) {
-        return studentService.saveStudent(student);
+    public User saveStudent(@RequestBody User student) {
+        return userService.saveUser(student);
     }
 
     // Delete operation
     @DeleteMapping(path="/delete")
-    public @ResponseBody String deleteStudent (@RequestParam int idStudent) {
-        studentService.deleteStudentById(idStudent);
+    public @ResponseBody String deleteStudent (@RequestParam long id) {
+        userService.deleteUserById(id);
         return "Deleted";
     }
 
     // Get all operation
     @GetMapping(path="/all")
-    public List<Student> fetchStudentList() {
-        return studentService.getAllStudents();
+    public List<User> fetchStudentList() {
+        return userService.getAllStudent();
     }
 
     // Update operation
+    @PreAuthorize("hasRole('Student')")
     @PutMapping("/update/{id}")
-    public Student updateStudent(@RequestBody Student student, @PathVariable("id") int idStudent) {
-        return studentService.updateStudent(student, idStudent);
+    public User updateStudent(@RequestBody User student, @PathVariable("id") long id) {
+        return userService.updateUser(student, id);
     }
 
 }
