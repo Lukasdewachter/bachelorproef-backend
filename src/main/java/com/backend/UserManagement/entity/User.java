@@ -22,7 +22,7 @@ public class User {
     @Column
     private String mail;
     @Column
-    private Integer tel;
+    private String tel;
     @Column
     private String address;
 
@@ -50,7 +50,7 @@ public class User {
     }
 
     // Admin & Student
-    public User(String firstName, String surname, String mail, Integer tel, String address, String fieldOfStudy, String campus, String password){
+    public User(String firstName, String surname, String mail, String tel, String address, String fieldOfStudy, String campus, String password){
         super();
 
         this.firstName = firstName;
@@ -67,7 +67,7 @@ public class User {
     }
 
     // Company
-    public User(String companyName, String firstName, String surname, String mail, Integer tel, String address, String password){
+    public User(String companyName, String firstName, String surname, String mail, String tel, String address, String password){
         super();
 
         this.companyName = companyName;
@@ -82,7 +82,7 @@ public class User {
     }
 
     // Professor
-    public User(String firstName, String surname, String mail, Integer tel, String address, String fieldOfStudy, String campus, int coordinator, String password){
+    public User(String firstName, String surname, String mail, String tel, String address, String fieldOfStudy, String campus, int coordinator, String password){
         super();
 
         this.firstName = firstName;
@@ -147,8 +147,8 @@ public class User {
     }
     public void setMail(String mail) {this.mail = mail;}
 
-    public Integer getTel() {return tel;}
-    public void setTel(Integer tel) {
+    public String getTel() {return tel;}
+    public void setTel(String tel) {
         this.tel = tel;
     }
 
