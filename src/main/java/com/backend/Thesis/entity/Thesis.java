@@ -1,4 +1,4 @@
-package com.backend.UserManagement.entity;
+package com.backend.Thesis.entity;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -9,15 +9,16 @@ import javax.persistence.Id;
 public class Thesis {
     @Id
     @GeneratedValue(strategy=GenerationType.AUTO)
-    private Integer idThesis;
+    private long id;
     private String name;
     private String description;
     private String fieldOfStudy;
     private String campus;
+    private Boolean approved;
 
-    public Integer getIdThesis() {return idThesis;}
-    public void setIdThesis(Integer idThesis) {
-        this.idThesis = idThesis;
+    public long getId() {return id;}
+    public void setId(long id) {
+        this.id = id;
     }
 
     public String getName() {return name;}
@@ -39,4 +40,7 @@ public class Thesis {
         return campus;
     }
     public void setCampus(String campus) {this.campus = campus;}
+
+    public Boolean getApproved(){ return approved;}
+    public void setApproved(Boolean approved) {this.approved = approved;}
 }

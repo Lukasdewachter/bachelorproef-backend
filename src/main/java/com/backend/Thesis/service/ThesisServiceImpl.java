@@ -1,7 +1,7 @@
-package com.backend.UserManagement.service;
+package com.backend.Thesis.service;
 
-import com.backend.UserManagement.entity.Thesis;
-import com.backend.UserManagement.repository.ThesisRepository;
+import com.backend.Thesis.entity.Thesis;
+import com.backend.Thesis.repository.ThesisRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -22,17 +22,18 @@ public class ThesisServiceImpl implements ThesisService {
 
     @Override
     public Thesis saveThesis(Thesis thesis) {
+        thesis.setApproved(false);
         return thesisRepository.save(thesis);
     }
 
     @Override
-    public Thesis getThesisById(int idThesis) {
-        return thesisRepository.findById(idThesis).get();
+    public Thesis getThesisById(long id) {
+        return thesisRepository.findById(id).get();
     }
 
     @Override
-    public Thesis updateThesis(Thesis thesis, int idThesis) {
-        Thesis existingThesis = thesisRepository.findById(idThesis).get();
+    public Thesis updateThesis(Thesis thesis, long id) {
+        Thesis existingThesis = thesisRepository.findById(id).get();
 
         if (Objects.nonNull(thesis.getName()) && !"".equalsIgnoreCase(thesis.getName())) {
             existingThesis.setName(thesis.getName());
@@ -54,11 +55,15 @@ public class ThesisServiceImpl implements ThesisService {
             existingThesis.setCampus(thesis.getCampus());
         }
 
+        if (Objects.nonNull(thesis.getApproved()) && !"".equals(thesis.getApproved())) {
+            existingThesis.setApproved(thesis.getApproved());
+        }
+
         return thesisRepository.save(existingThesis);
     }
 
     @Override
-    public void deleteThesisById(int idThesis) {
-        thesisRepository.deleteById(idThesis);
+    public void deleteThesisById(long id) {
+        thesisRepository.deleteById(id);
     }
 }
