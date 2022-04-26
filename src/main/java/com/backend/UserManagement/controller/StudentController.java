@@ -11,18 +11,19 @@ import java.util.List;
 @RequestMapping(path="/student") // This means URL's start with /student (after Application path)
 @CrossOrigin(origins = "http://localhost:3000")
 
-@PreAuthorize("hasAnyRole('Admin', 'Student')")
 public class StudentController {
     @Autowired
     private UserService userService;
 
     // Add operation
+    @PreAuthorize("hasAnyRole('Admin')")
     @PostMapping("/add")
     public User saveStudent(@RequestBody User student) {
         return userService.saveUser(student);
     }
 
     // Delete operation
+    @PreAuthorize("hasAnyRole('Admin')")
     @DeleteMapping(path="/delete")
     public @ResponseBody String deleteStudent (@RequestParam long id) {
         userService.deleteUserById(id);
@@ -30,13 +31,14 @@ public class StudentController {
     }
 
     // Get all operation
+    @PreAuthorize("hasAnyRole('Admin')")
     @GetMapping(path="/all")
     public List<User> fetchStudentList() {
         return userService.getAllStudent();
     }
 
     // Update operation
-    @PreAuthorize("hasRole('Student')")
+    @PreAuthorize("hasAnyRole('Student', 'Admin')")
     @PutMapping("/update/{id}")
     public User updateStudent(@RequestBody User student, @PathVariable("id") long id) {
         return userService.updateUser(student, id);

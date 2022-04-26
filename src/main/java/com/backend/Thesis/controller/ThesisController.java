@@ -1,7 +1,8 @@
-package com.backend.UserManagement.controller;
-import com.backend.UserManagement.entity.Thesis;
-import com.backend.UserManagement.service.ThesisService;
+package com.backend.Thesis.controller;
+import com.backend.Thesis.entity.Thesis;
+import com.backend.Thesis.service.ThesisService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -15,27 +16,31 @@ public class ThesisController {
     private ThesisService thesisService;
 
     // Add operation
+    @PreAuthorize("hasAnyRole('Company', 'Admin')")
     @PostMapping(path="/add")
     public Thesis saveThesis(@RequestBody Thesis thesis) {
         return thesisService.saveThesis(thesis);
     }
 
     // Delete operation
+    @PreAuthorize("hasAnyRole('Admin')")
     @DeleteMapping(path="/delete")
-    public @ResponseBody String deleteThesis (@RequestParam int idThesis) {
-        thesisService.deleteThesisById(idThesis);
+    public @ResponseBody String deleteThesis (@RequestParam long id) {
+        thesisService.deleteThesisById(id);
         return "Deleted";
     }
 
     // Get all operation
+    @PreAuthorize("hasAnyRole('Admin')")
     @GetMapping(path="/all")
     public List<Thesis> fetchThesisList() {
         return thesisService.getAllThesis();
     }
 
     // Update operation
+    @PreAuthorize("hasAnyRole('Company', 'Admin')")
     @PutMapping("/update/{id}")
-    public Thesis updateThesis(@RequestBody Thesis thesis, @PathVariable("id") int idThesis) {
-        return thesisService.updateThesis(thesis, idThesis);
+    public Thesis updateThesis(@RequestBody Thesis thesis, @PathVariable("id") long id) {
+        return thesisService.updateThesis(thesis, id);
     }
 }
