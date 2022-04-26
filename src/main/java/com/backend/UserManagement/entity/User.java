@@ -16,7 +16,7 @@ public class User {
     @Column
     private String firstName;
     @Column
-    private String surname;
+    private String lastName;
 
 
     @Column
@@ -50,11 +50,11 @@ public class User {
     }
 
     // Admin & Student
-    public User(String firstName, String surname, String mail, String tel, String address, String fieldOfStudy, String campus, String password){
+    public User(String firstName, String lastName, String mail, String tel, String address, String fieldOfStudy, String campus, String password){
         super();
 
         this.firstName = firstName;
-        this.surname = surname;
+        this.lastName = lastName;
 
         this.mail = mail;
         this.tel = tel;
@@ -67,12 +67,12 @@ public class User {
     }
 
     // Company
-    public User(String companyName, String firstName, String surname, String mail, String tel, String address, String password){
+    public User(String companyName, String firstName, String lastName, String mail, String tel, String address, String password){
         super();
 
         this.companyName = companyName;
         this.firstName = firstName;
-        this.surname = surname;
+        this.lastName = lastName;
 
         this.mail = mail;
         this.tel = tel;
@@ -82,11 +82,11 @@ public class User {
     }
 
     // Professor
-    public User(String firstName, String surname, String mail, String tel, String address, String fieldOfStudy, String campus, int coordinator, String password){
+    public User(String firstName, String lastName, String mail, String tel, String address, String fieldOfStudy, String campus, int coordinator, String password){
         super();
 
         this.firstName = firstName;
-        this.surname = surname;
+        this.lastName = lastName;
 
         this.mail = mail;
         this.tel = tel;
@@ -104,7 +104,7 @@ public class User {
 
         this.companyName = user.getCompanyName();
         this.firstName = user.getFirstName();
-        this.surname = user.getSurname();
+        this.lastName = user.getSurname();
 
         this.mail = user.getMail();
         this.tel = user.getTel();
@@ -136,10 +136,10 @@ public class User {
     }
 
     public String getSurname() {
-        return surname;
+        return lastName;
     }
-    public void setSurname(String surname) {
-        this.surname = surname;
+    public void setSurname(String lastName) {
+        this.lastName = lastName;
     }
 
     public String getMail() {
