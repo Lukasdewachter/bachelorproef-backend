@@ -71,6 +71,10 @@ public class UserServiceImpl implements UserService {
     public User updateUser(User user, long id) {
         User existingUser = userRepository.findById(id).get();
 
+        if (Objects.nonNull(user.getCompanyName()) && !"".equalsIgnoreCase(user.getCompanyName())) {
+            existingUser.setCompanyName(user.getCompanyName());
+        }
+
         if (Objects.nonNull(user.getFirstName()) && !"".equalsIgnoreCase(user.getFirstName())) {
             existingUser.setFirstName(user.getFirstName());
         }
@@ -81,6 +85,26 @@ public class UserServiceImpl implements UserService {
 
         if (Objects.nonNull(user.getMail()) && !"".equalsIgnoreCase(user.getMail())) {
             existingUser.setMail(user.getMail());
+        }
+
+        if (Objects.nonNull(user.getTel()) && !"".equalsIgnoreCase(user.getTel())) {
+            existingUser.setTel(user.getTel());
+        }
+
+        if (Objects.nonNull(user.getAddress()) && !"".equalsIgnoreCase(user.getAddress())) {
+            existingUser.setAddress(user.getAddress());
+        }
+
+        if (Objects.nonNull(user.getFieldOfStudy()) && !"".equalsIgnoreCase(user.getFieldOfStudy())) {
+            existingUser.setFieldOfStudy(user.getFieldOfStudy());
+        }
+
+        if (Objects.nonNull(user.getCampus()) && !"".equalsIgnoreCase(user.getCampus())) {
+            existingUser.setCampus(user.getCampus());
+        }
+
+        if (Objects.nonNull(user.getCoordinator()) && !"".equals(user.getCoordinator())) {
+            existingUser.setCoordinator(user.getCoordinator());
         }
 
         return userRepository.save(existingUser);
