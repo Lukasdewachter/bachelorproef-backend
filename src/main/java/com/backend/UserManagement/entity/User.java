@@ -104,7 +104,7 @@ public class User {
 
         this.companyName = user.getCompanyName();
         this.firstName = user.getFirstName();
-        this.lastName = user.getSurname();
+        this.lastName = user.getLastName();
 
         this.mail = user.getMail();
         this.tel = user.getTel();
@@ -112,7 +112,7 @@ public class User {
 
         this.fieldOfStudy = user.getFieldOfStudy();
         this.campus = user.getCampus();
-        this. coordinator = user.getCoordinator();
+        this.coordinator = user.getCoordinator();
 
         this.password = user.getPassword();
 
@@ -135,10 +135,10 @@ public class User {
         this.firstName = firstName;
     }
 
-    public String getSurname() {
+    public String getLastName() {
         return lastName;
     }
-    public void setSurname(String lastName) {
+    public void setLastName(String lastName) {
         this.lastName = lastName;
     }
 

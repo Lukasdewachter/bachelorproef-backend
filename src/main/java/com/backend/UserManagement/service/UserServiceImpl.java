@@ -75,8 +75,8 @@ public class UserServiceImpl implements UserService {
             existingUser.setFirstName(user.getFirstName());
         }
 
-        if (Objects.nonNull(user.getSurname()) && !"".equalsIgnoreCase(user.getSurname())) {
-            existingUser.setSurname(user.getSurname());
+        if (Objects.nonNull(user.getLastName()) && !"".equalsIgnoreCase(user.getLastName())) {
+            existingUser.setLastName(user.getLastName());
         }
 
         if (Objects.nonNull(user.getMail()) && !"".equalsIgnoreCase(user.getMail())) {
