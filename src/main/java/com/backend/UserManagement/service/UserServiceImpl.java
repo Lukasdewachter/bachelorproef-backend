@@ -49,12 +49,17 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public User saveUser(User user) {
+    public String saveUser(User user, String roleName){
+        User test = getUserByMail(user.getMail());
+        if(getUserByMail(user.getMail()) != null){
+           return "mailExists";
+        }
+        user.setPassword(bcryptEncoder.encode(user.getPassword()));
         User newUser = new User(user);
-        newUser.setPassword(bcryptEncoder.encode(user.getPassword()));
-        //Roles role = roleService.findByName("Admin");
-        //newAdmin.setRole(role);
-        return userRepository.save(newUser);
+        Roles role = roleService.findByName(roleName);
+        newUser.setRole(role);
+        userRepository.save(newUser);
+        return "Success";
     }
 
     @Override

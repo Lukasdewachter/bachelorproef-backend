@@ -1,6 +1,7 @@
 package com.backend.UserManagement.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 import javax.persistence.*;
 import java.util.Set;
@@ -34,7 +35,7 @@ public class User {
     private int coordinator;
 
     @Column
-    @JsonIgnore
+    @JsonProperty
     private String password;
 
     @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
@@ -115,7 +116,6 @@ public class User {
         this.coordinator = user.getCoordinator();
 
         this.password = user.getPassword();
-
     }
 
     public long getId() {return id;}
@@ -168,7 +168,10 @@ public class User {
     }
     public void setCoordinator(int coordinator) {this.coordinator = coordinator;}
 
+    @JsonIgnore
     public String getPassword(){ return password; }
+
+    @JsonProperty
     public void setPassword(String password){this.password = password;}
 
     public Roles getRole(){ return role;}

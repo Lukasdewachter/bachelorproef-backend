@@ -16,10 +16,9 @@ public class ProfessorController {
     private UserService userService;
 
     // Add operation
-    @PreAuthorize("hasAnyRole('Admin')")
     @PostMapping(path="/add")
-    public User saveProfessor(@RequestBody User professor) {
-        return userService.saveUser(professor);
+    public @ResponseBody String saveProfessor(@RequestBody User professor) {
+        return userService.saveUser(professor, "Professor");
     }
 
     // Delete operation

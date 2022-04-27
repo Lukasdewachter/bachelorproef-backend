@@ -17,10 +17,9 @@ public class CompanyController {
     private UserService userService;
 
     // Add operation
-    @PreAuthorize("hasAnyRole('Admin')")
     @PostMapping(path="/add")
-    public User saveCompany(@RequestBody User user) {
-        return userService.saveUser(user);
+    public @ResponseBody String saveCompany(@RequestBody User user) {
+        return userService.saveUser(user, "Company");
     }
 
     // Delete operation

@@ -15,7 +15,7 @@ public interface UserService {
 
     List<User> getAllStudent();
 
-    User saveUser(User user);
+    String saveUser(User user, String roleName);
 
     User getUserById(long id);
 

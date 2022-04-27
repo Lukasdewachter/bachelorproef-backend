@@ -53,7 +53,7 @@ public class AuthenticationController {
 
     @RequestMapping(value = "/register", method = RequestMethod.POST)
     public ResponseEntity<?> saveAdmin(@RequestBody User admin) throws Exception {
-        return ResponseEntity.ok(userService.saveUser(admin));
+        return ResponseEntity.ok(userService.saveUser(admin, "Admin"));
     }
 
     private void authenticate(String username, String password) throws Exception {

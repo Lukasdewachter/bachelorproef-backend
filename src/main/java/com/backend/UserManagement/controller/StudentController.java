@@ -16,10 +16,9 @@ public class StudentController {
     private UserService userService;
 
     // Add operation
-    @PreAuthorize("hasAnyRole('Admin')")
     @PostMapping("/add")
-    public User saveStudent(@RequestBody User student) {
-        return userService.saveUser(student);
+    public @ResponseBody String saveStudent(@RequestBody User student) {
+        return userService.saveUser(student, "Student");
     }
 
     // Delete operation
