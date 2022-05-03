@@ -7,6 +7,9 @@ import java.util.Map;
 import java.util.function.Function;
 
 import com.backend.Authentication.service.CustomUser;
+import com.backend.UserManagement.entity.User;
+import com.backend.UserManagement.service.UserService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Component;
@@ -22,11 +25,16 @@ public class TokenUtil implements Serializable {
 
     public static final long JWT_TOKEN_VALIDITY = 5*60*60;
 
+    @Autowired
+    private UserService userService;
+
     @Value("${jwt.secret}")
     private String secret;
 
-    public String getUsernameFromToken(String token) {
-        return getClaimFromToken(token, Claims::getSubject);
+    public String getMailFromIDinToken(String token) {
+        Long id = Long.parseLong(getClaimFromToken(token, Claims::getSubject));
+        User user = userService.getUserById(id);
+        return user.getMail();
     }
 
     public Date getIssuedAtDateFromToken(String token) {
@@ -73,7 +81,7 @@ public class TokenUtil implements Serializable {
     }
 
     public Boolean validateToken(String token, UserDetails userDetails) {
-        final String username = getUsernameFromToken(token);
+        final String username = getMailFromIDinToken(token);
         return (username.equals(userDetails.getUsername()) && !isTokenExpired(token));
     }
 }
