@@ -18,13 +18,12 @@ public class UserDetailsService implements org.springframework.security.core.use
     private UserService userService;
 
     @Override
-    public UserDetails loadUserByUsername(String mail) throws UsernameNotFoundException {
-        User admin = userService.getUserByMail(mail);
-        if (admin == null) {
+    public CustomUser loadUserByUsername(String mail) throws UsernameNotFoundException {
+        User user = userService.getUserByMail(mail);
+        if (user == null) {
             throw new UsernameNotFoundException("User not found with username: " + mail);
         }
-        return new org.springframework.security.core.userdetails.User(admin.getMail(), admin.getPassword(), getAuthority(admin));
-                //new ArrayList<>());
+        return new CustomUser(user.getMail(), user.getPassword(), getAuthority(user), user.getId(), user.getRole().getName());
     }
 
 

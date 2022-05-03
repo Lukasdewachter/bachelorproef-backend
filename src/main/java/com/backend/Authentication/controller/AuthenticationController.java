@@ -2,6 +2,7 @@ package com.backend.Authentication.controller;
 
 import java.util.Objects;
 
+import com.backend.Authentication.service.CustomUser;
 import com.backend.UserManagement.entity.User;
 import com.backend.UserManagement.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -43,17 +44,12 @@ public class AuthenticationController {
 
         authenticate(authenticationRequest.getUsername(), authenticationRequest.getPassword());
 
-        final UserDetails userDetails = jwtInMemoryUserDetailsService
+        final CustomUser userDetails = (CustomUser) jwtInMemoryUserDetailsService
                 .loadUserByUsername(authenticationRequest.getUsername());
 
         final String token = jwtTokenUtil.generateToken(userDetails);
 
         return ResponseEntity.ok(new JwtResponse(token));
-    }
-
-    @RequestMapping(value = "/register", method = RequestMethod.POST)
-    public ResponseEntity<?> saveAdmin(@RequestBody User admin) throws Exception {
-        return ResponseEntity.ok(userService.saveUser(admin, "Admin"));
     }
 
     private void authenticate(String username, String password) throws Exception {
