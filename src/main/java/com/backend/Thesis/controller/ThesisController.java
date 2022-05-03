@@ -31,7 +31,7 @@ public class ThesisController {
     }
 
     // Get all operation
-    @PreAuthorize("hasAnyRole('Admin', 'Student)")
+    @PreAuthorize("hasAnyRole('Admin', 'Student')")
     @GetMapping(path="/all")
     public List<Thesis> fetchThesisList() {
         return thesisService.getAllThesis();
