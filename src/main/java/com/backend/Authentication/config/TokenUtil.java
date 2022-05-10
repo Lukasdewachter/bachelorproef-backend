@@ -22,9 +22,17 @@ import io.jsonwebtoken.SignatureAlgorithm;
 public class TokenUtil implements Serializable {
 
     private static final long serialVersionUID = -2550185165626007488L;
+    private long expirationDateInMs;
+    private long refreshExpirationDateInMs;
+    @Value("${jwt.token.expirationDateInMs}")
+    public void setExpirationDateInMs(int expirationDateInMs) {
+        this.expirationDateInMs = expirationDateInMs;
+    }
 
-    public static final long JWT_TOKEN_VALIDITY = 5*60*60;
-
+    @Value("${jwt.token.refreshExpirationDateInMs}")
+    public void setRefreshExpirationDateInMs(int refreshExpirationDateInMs) {
+        this.refreshExpirationDateInMs = refreshExpirationDateInMs;
+    }
     @Autowired
     private UserService userService;
 
@@ -73,7 +81,15 @@ public class TokenUtil implements Serializable {
     private String doGenerateToken(Map<String, Object> claims, Long id) {
         String subjectId = String.valueOf(id);
         return Jwts.builder().setClaims(claims).setSubject(subjectId).setIssuedAt(new Date(System.currentTimeMillis()))
-                .setExpiration(new Date(System.currentTimeMillis() + JWT_TOKEN_VALIDITY*1000)).signWith(SignatureAlgorithm.HS512, secret).compact();
+                .setExpiration(new Date(System.currentTimeMillis() + expirationDateInMs)).signWith(SignatureAlgorithm.HS512, secret).compact();
+    }
+
+    public String doGenerateRefreshToken(Map<String, Object> claims, String subject) {
+
+        return Jwts.builder().setClaims(claims).setSubject(subject).setIssuedAt(new Date(System.currentTimeMillis()))
+                .setExpiration(new Date(System.currentTimeMillis() + refreshExpirationDateInMs))
+                .signWith(SignatureAlgorithm.HS512, secret).compact();
+
     }
 
     public Boolean canTokenBeRefreshed(String token) {

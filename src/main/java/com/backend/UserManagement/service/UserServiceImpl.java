@@ -1,5 +1,6 @@
 package com.backend.UserManagement.service;
 
+import com.backend.UserManagement.Exception.ResourceNotFoundException;
 import com.backend.UserManagement.entity.Roles;
 import com.backend.UserManagement.entity.User;
 import com.backend.UserManagement.repository.RolesRepository;
@@ -64,6 +65,10 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User getUserById(long id) {
+        User user = new User(userRepository.findById(id).get());
+        if (user ==  null){
+            throw new ResourceNotFoundException("User not found with id " + id);
+        }
         return userRepository.findById(id).get();
     }
 
