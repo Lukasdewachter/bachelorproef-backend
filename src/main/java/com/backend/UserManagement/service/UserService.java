@@ -24,4 +24,6 @@ public interface UserService {
     User updateUser(User user, long id);
 
     void deleteUserById(long id);
+
+    void toggleBookmark(long thesisId, long userId);
 }

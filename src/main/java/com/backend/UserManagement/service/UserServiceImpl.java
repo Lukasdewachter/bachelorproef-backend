@@ -1,5 +1,6 @@
 package com.backend.UserManagement.service;
 
+import com.backend.Thesis.repository.ThesisRepository;
 import com.backend.UserManagement.Exception.ResourceNotFoundException;
 import com.backend.UserManagement.entity.Roles;
 import com.backend.UserManagement.entity.User;
@@ -17,6 +18,9 @@ public class UserServiceImpl implements UserService {
 
     @Autowired
     private UserRepository userRepository;
+
+    @Autowired
+    private ThesisRepository thesisRepository;
 
     @Autowired
     private RolesRepository roleService;
@@ -50,10 +54,10 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public String saveUser(User user, String roleName){
+    public String saveUser(User user, String roleName) {
         User test = getUserByMail(user.getMail());
-        if(getUserByMail(user.getMail()) != null){
-           return "mailExists";
+        if (getUserByMail(user.getMail()) != null) {
+            return "mailExists";
         }
         user.setPassword(bcryptEncoder.encode(user.getPassword()));
         User newUser = new User(user);
@@ -66,7 +70,7 @@ public class UserServiceImpl implements UserService {
     @Override
     public User getUserById(long id) {
         User user = new User(userRepository.findById(id).get());
-        if (user ==  null){
+        if (user == null) {
             throw new ResourceNotFoundException("User not found with id " + id);
         }
         return userRepository.findById(id).get();
@@ -124,4 +128,24 @@ public class UserServiceImpl implements UserService {
     public void deleteUserById(long id) {
         userRepository.deleteById(id);
     }
+
+    @Override
+    public void toggleBookmark(long thesisId, long userId) {
+        List<User> bookmarksThesis = userRepository.findAllByBookmarksId(thesisId);
+        for (int i = 0; i < bookmarksThesis.size(); i++) {
+            if (bookmarksThesis.get(i).getId() == userId) {
+                bookmarksThesis.get(i).removeBookmark(thesisId);
+                userRepository.save(bookmarksThesis.get(i));
+                return;
+            }
+        }
+        User user = userRepository.findById(userId).get();
+        if (user == null) {
+            throw new ResourceNotFoundException("User not found with id " + userId);
+        }
+        user.addBookmark(thesisRepository.findById(thesisId).get());
+        userRepository.save(user);
+        return;
+    }
+
 }

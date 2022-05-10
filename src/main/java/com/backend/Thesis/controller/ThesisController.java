@@ -36,6 +36,16 @@ public class ThesisController {
         return thesisService.getAllThesis();
     }
 
+    @GetMapping(path="/approved")
+    public List<Thesis> fetchApprovedThesisList() {
+        return thesisService.getAllApprovedThesis();
+    }
+
+    @GetMapping(path="/get/{id}")
+    public Thesis fetchThesis(@PathVariable("id") long id) {
+        return thesisService.getThesisById(id);
+    }
+
     // Update operation
     @PreAuthorize("hasAnyRole('Company', 'Admin')")
     @PutMapping("/update/{id}")

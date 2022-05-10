@@ -11,4 +11,7 @@ import java.util.List;
 public interface UserRepository extends CrudRepository<User, Long> {
     User findByMail(String mail);
     List<User> findByRole(Roles role);
+
+    List<User> findAllByBookmarksId(long thesisId);
+
 }

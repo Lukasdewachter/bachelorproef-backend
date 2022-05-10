@@ -1,9 +1,11 @@
 package com.backend.UserManagement.entity;
 
+import com.backend.Thesis.entity.Thesis;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import javax.persistence.*;
+import java.util.HashSet;
 import java.util.Set;
 
 @Entity // This tells Hibernate to make a table out of this class
@@ -40,12 +42,20 @@ public class User {
 
     @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinTable(name = "USER_ROLES",
-            joinColumns = {
-                    @JoinColumn(name = "USER_ID")
-            },
-            inverseJoinColumns = {
-                    @JoinColumn(name = "ROLE_ID") })
+            joinColumns = {@JoinColumn(name = "USER_ID", referencedColumnName = "id")},
+            inverseJoinColumns = {@JoinColumn(name = "ROLE_ID", referencedColumnName = "id") })
     private Roles role;
+
+
+    @ManyToMany(fetch = FetchType.LAZY,
+            cascade = {
+                    CascadeType.PERSIST,
+                    CascadeType.MERGE
+            })
+    @JoinTable(name = "Bookmarks",
+            joinColumns = { @JoinColumn(name = "userId") },
+            inverseJoinColumns = { @JoinColumn(name = "thesisId") })
+    private Set<Thesis> bookmarks = new HashSet<>();
 
     public User(){
     }
@@ -176,4 +186,17 @@ public class User {
 
     public Roles getRole(){ return role;}
     public void setRole(Roles role){ this.role = role;}
+
+    public void addBookmark(Thesis thesis){
+        this.bookmarks.add(thesis);
+        thesis.getBookmarks().add(this);
+    }
+
+    public void removeBookmark(long thesisId){
+        Thesis thesis = this.bookmarks.stream().filter(t -> t.getId() == thesisId).findFirst().orElse(null);
+        if( thesis != null){
+            this.bookmarks.remove(thesis);
+            thesis.getBookmarks().remove(this);
+        }
+    }
 }
