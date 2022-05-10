@@ -32,7 +32,7 @@ public class StudentController {
     }
 
     // Get all operation
-    @PreAuthorize("hasAnyRole('Admin')")
+    @PreAuthorize("hasAnyRole('Admin', 'Professor')")
     @GetMapping(path="/all")
     public List<User> fetchStudentList() {
         if (userService.getAllStudent() == null){
