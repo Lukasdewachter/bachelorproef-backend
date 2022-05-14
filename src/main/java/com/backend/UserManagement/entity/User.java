@@ -34,7 +34,7 @@ public class User {
     @Column
     private String campus;
     @Column
-    private int coordinator;
+    private Boolean coordinator;
 
     @Column
     @JsonProperty
@@ -93,7 +93,7 @@ public class User {
     }
 
     // Professor
-    public User(String firstName, String lastName, String mail, String tel, String address, String fieldOfStudy, String campus, int coordinator, String password){
+    public User(String firstName, String lastName, String mail, String tel, String address, String fieldOfStudy, String campus, Boolean coordinator, String password){
         super();
 
         this.firstName = firstName;
@@ -173,10 +173,10 @@ public class User {
     public String getCampus() {return campus;}
     public void setCampus(String campus) {this.campus = campus;}
 
-    public int getCoordinator() {
+    public Boolean getCoordinator() {
         return coordinator;
     }
-    public void setCoordinator(int coordinator) {this.coordinator = coordinator;}
+    public void setCoordinator(Boolean coordinator) {this.coordinator = coordinator;}
 
     @JsonIgnore
     public String getPassword(){ return password; }

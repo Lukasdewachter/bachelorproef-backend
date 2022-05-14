@@ -26,4 +26,6 @@ public interface UserService {
     void deleteUserById(long id);
 
     void toggleBookmark(long thesisId, long userId);
+
+    Boolean isCoordinator(long userId);
 }

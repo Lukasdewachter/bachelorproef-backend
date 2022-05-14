@@ -1,6 +1,7 @@
 package com.backend.UserManagement.controller;
 import com.backend.UserManagement.entity.User;
 import com.backend.UserManagement.service.UserService;
+import com.fasterxml.jackson.databind.node.ObjectNode;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
@@ -34,6 +35,14 @@ public class ProfessorController {
     @GetMapping(path="/all")
     public List<User> fetchProfessorList() {
         return userService.getAllProfessor();
+    }
+
+    // Get is coordinator
+    @PreAuthorize("hasAnyRole('Admin', 'Professor')")
+    @PutMapping(path="/iscoordinator")
+    public Boolean isProfessorCoordinator(@RequestBody ObjectNode json) {
+        Long userId = json.get("userId").asLong();
+        return userService.isCoordinator(userId);
     }
 
     // Update operation

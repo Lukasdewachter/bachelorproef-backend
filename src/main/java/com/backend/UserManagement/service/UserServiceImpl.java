@@ -148,4 +148,10 @@ public class UserServiceImpl implements UserService {
         return;
     }
 
+    @Override
+    public Boolean isCoordinator(long userId){
+        User user = userRepository.findById(userId).get();
+        return user.getCoordinator();
+    }
+
 }
