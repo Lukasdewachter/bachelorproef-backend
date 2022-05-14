@@ -15,6 +15,7 @@ public class Thesis {
     private String name;
     private String shortDescription;
 
+    @Lob
     private String longDescription;
     private String fieldOfStudy;
     private String campus;
