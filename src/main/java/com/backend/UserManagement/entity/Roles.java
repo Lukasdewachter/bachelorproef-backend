@@ -12,9 +12,6 @@ public class Roles {
     @Column
     private String name;
 
-    @OneToMany(mappedBy="role")
-    private Set<User> users;
-
     public Roles(){
     }
 
@@ -24,16 +21,4 @@ public class Roles {
 
     public String getName(){ return name; }
     public void setName(String name){ this.name = name; }
-
-    public Set<User> getUsers(){
-        return users;
-    }
-
-    public void setUsers(Set<User> users){
-        this.users = users;
-    }
-
-    public void addUser(User user){
-        this.users.add((user));
-    }
 }
