@@ -40,12 +40,9 @@ public class User {
     @JsonProperty
     private String password;
 
-    @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-    @JoinTable(name = "USER_ROLES",
-            joinColumns = {@JoinColumn(name = "USER_ID", referencedColumnName = "id")},
-            inverseJoinColumns = {@JoinColumn(name = "ROLE_ID", referencedColumnName = "id") })
+    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @JoinColumn(name = "role_id", referencedColumnName = "id")
     private Roles role;
-
 
     @ManyToMany(fetch = FetchType.LAZY,
             cascade = {

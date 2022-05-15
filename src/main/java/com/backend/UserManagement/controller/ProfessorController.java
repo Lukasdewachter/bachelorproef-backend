@@ -25,8 +25,8 @@ public class ProfessorController {
     // Delete operation
     @PreAuthorize("hasAnyRole('Admin')")
     @DeleteMapping(path="/delete")
-    public @ResponseBody String deleteProfessor (@RequestParam int idProfessor) {
-        userService.deleteUserById(idProfessor);
+    public @ResponseBody String deleteProfessor(@RequestParam int id) {
+        userService.deleteUserById(id);
         return "Deleted";
     }
 

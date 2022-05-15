@@ -55,7 +55,6 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public String saveUser(User user, String roleName) {
-        User test = getUserByMail(user.getMail());
         if (getUserByMail(user.getMail()) != null) {
             return "mailExists";
         }
@@ -126,6 +125,9 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public void deleteUserById(long id) {
+        User user = userRepository.findById(id).get();
+        user.setRole(null);
+        userRepository.save(user);
         userRepository.deleteById(id);
     }
 
