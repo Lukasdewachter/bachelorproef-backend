@@ -49,7 +49,7 @@ public class ThesisController {
     }
 
     // Update operation
-    @PreAuthorize("hasAnyRole('Company', 'Admin')")
+    @PreAuthorize("hasAnyRole('Company', 'Admin','Professor')")
     @PutMapping("/update/{id}")
     public Thesis updateThesis(@RequestBody Thesis thesis, @PathVariable("id") long id) {
         return thesisService.updateThesis(thesis, id);
