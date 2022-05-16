@@ -1,64 +1,34 @@
 # Bachelorproef - Backend
 
-Gevolgde tutorial: [Getting Started - Spring IO](https://spring.io/guides/gs/accessing-data-mysql/)
+Deze repository bevat de backend voor het project uit Ba3 Industrieel ingenieur: Electronica - ICT: Smart Applications. De backend bestaat uit een Spring Boot Java applicatie. Hiermee werd een REST api opgemaakt die de verschillende requests van de frontend verwerkt en verwerkt met de MySQL database.
 
-[CRUD Spring Boot](https://www.geeksforgeeks.org/spring-boot-crud-operations/)
-## Services
-1. Authenticatie
-2. User management
-3. Masterproeven en voorkeuren
-4. Communicatie met de gebruikers
+## Builds
+De laatste build van dit project is terug te vinden op [Releases](https://github.com/Lukasdewachter/bachelorproef-backend/releases). Deze build kan opgestart worden door volgend commando uit te voeren in de terminal: `java -jar "./bachelorproef-backend-Vx.x.jar"`
+
+## Developer
+In developer omgeving kan dit project geopend worden in IntelliJ. Aan de hand van Maven worden de bijhorende Spring Boot, Java-MySQL en JSON WebToken dependencies opgehaald.
+
+Door `.\src\main\java\com\backend\MainBackend.java` te runnen, wordt de Spring Boot omgeving opgestart.
+
+## Packages
+De applicatie is opgedeeld in drie verschillende packages. Elke package heeft zijn eigen doel en verwerkt aparte API endpoints.
+1. Authentication
+2. UserManagement
+3. Thesis
 
 ## MySQL - *JPA*
-Gegevens voor de lokale DB:  
+Deze Spring Boot applicatie maakt gebruik van een MySQL database om alle gegevens in op te slaan. Volgende variabelen staan gedefinieerd in `\src\main\resources\application.properties` om een verbinding op te zetten met de DB:
 * DB: `masterproef_project`  
 * User: `mp_backend`  
 * WW: `backend`
 
-## Authenticatie
-Aparte package
+## HTTPS
+De endpoints zijn enkel bereikbaar via een beveiligde HTTPS verbinding. Hiervoor werd er een selfsigned certificaat aangemaakt: `\src\main\resources\sslKey.p12`. 
 
-### Login
-| VarType | VarName  |
-|---------|----------|
-| String  | Email    |
-| String  | Password |
+## JSON Webtoken
+Bij de authenticatie van de *users* wordt er gebruik gemaakt van JSON Webtokens. Wanneer de authenticatie geslaagd is, wordt er een token teruggestuurd. Deze token moet vervolgens in de frontend bij elke request meegestuurd worden in de *Header*. De backend controleert dan of de token nog niet vervallen is.
 
-### Register
-Optie geven om in te schrijven als Student, Promotor/Begeleider/Masterproefcoordinator of Bedrijf
+Houdbaarheid van een token is ingesteld op 5 uren.
 
-* Student
-
-| VarType | VarName        |
-|---------|----------------|
-| String  | Email          |
-| String  | Name           |
-| String  | Surname        |
-| String  | Tel            |
-| String  | Adress         |
-| String  | Field_of_study |
-| String  | Campus         |
-
-* Student
-
-| VarType | VarName        |
-|---------|----------------|
-| String  | Email          |
-| String  | Name           |
-| String  | Surname        |
-| String  | Tel            |
-| String  | Adres          |
-| String  | Field_of_study |
-| String  | Campus         |
-| Boolean | Coordinator    |
-
-
-* Bedrijf
-
-| VarType | VarName         |
-|---------|-----------------|
-| String  | Email           |
-| String  | Company name    |
-| String  | Name Contact    |
-| String  | Surname Contact |
-| String  | Tel             | 
+## Minimale vereisten
+* OpenJDK 17
