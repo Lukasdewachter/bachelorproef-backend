@@ -76,12 +76,16 @@ public class ThesisServiceImpl implements ThesisService {
             existingThesis.setPromotor(thesis.getPromotor());
         }
 
-        if (Objects.nonNull(thesis.getnumberOfPers()) && !"".equals(thesis.getnumberOfPers())) {
-            existingThesis.setnumberOfPers(thesis.getnumberOfPers());
+        if (Objects.nonNull(thesis.getNumberOfPers()) && !"".equals(thesis.getNumberOfPers())) {
+            existingThesis.setNumberOfPers(thesis.getNumberOfPers());
         }
 
         if (Objects.nonNull(thesis.getApproved()) && !"".equals(thesis.getApproved())) {
             existingThesis.setApproved(thesis.getApproved());
+        }
+
+        if (Objects.nonNull(thesis.getStudentId()) && !"".equals(thesis.getStudentId())) {
+            existingThesis.setStudentId(thesis.getStudentId());
         }
 
         return thesisRepository.save(existingThesis);
@@ -95,5 +99,13 @@ public class ThesisServiceImpl implements ThesisService {
     @Override
     public List<Thesis> getBookmarkByUser(Long userId){
         return thesisRepository.findAllByBookmarksId(userId);
+    }
+
+    @Override
+    public Thesis addStudentToThesis(long thesisId, long studentId){
+        Thesis thesis = thesisRepository.findById(thesisId).get();
+        thesis.setStudentId(studentId);
+        thesisRepository.save(thesis);
+        return thesis;
     }
 }

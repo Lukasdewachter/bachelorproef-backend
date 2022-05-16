@@ -1,6 +1,7 @@
 package com.backend.Thesis.controller;
 import com.backend.Thesis.entity.Thesis;
 import com.backend.Thesis.service.ThesisService;
+import com.fasterxml.jackson.databind.node.ObjectNode;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
@@ -52,5 +53,13 @@ public class ThesisController {
     @PutMapping("/update/{id}")
     public Thesis updateThesis(@RequestBody Thesis thesis, @PathVariable("id") long id) {
         return thesisService.updateThesis(thesis, id);
+    }
+
+    @PreAuthorize("hasAnyRole('Professor', 'Admin')")
+    @PostMapping("/addStudent")
+    public Thesis addStudentToThesis(@RequestBody ObjectNode json) {
+        Long thesisId = json.get("thesisId").asLong();
+        Long studentId = json.get("studentId").asLong();
+        return thesisService.addStudentToThesis(thesisId, studentId);
     }
 }

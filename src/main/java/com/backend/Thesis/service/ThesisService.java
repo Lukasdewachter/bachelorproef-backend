@@ -18,4 +18,6 @@ public interface ThesisService {
 
     void deleteThesisById(long id);
     List<Thesis> getBookmarkByUser(Long userId);
+
+    Thesis addStudentToThesis(long thesisId, long studentId);
 }

@@ -23,6 +23,8 @@ public class Thesis {
     private int numberOfPers;
     private Boolean approved;
 
+    private long studentId;
+
     @ManyToMany(fetch = FetchType.LAZY,
             cascade = {
                     CascadeType.PERSIST,
@@ -63,11 +65,14 @@ public class Thesis {
     public String getPromotor(){ return promotor; }
     public void setPromotor(String promotor) { this.promotor = promotor;}
 
-    public int getnumberOfPers(){ return numberOfPers;}
-    public void setnumberOfPers(int numberOfPers) { this.numberOfPers = numberOfPers;}
+    public int getNumberOfPers(){ return numberOfPers;}
+    public void setNumberOfPers(int numberOfPers) { this.numberOfPers = numberOfPers;}
 
     public Boolean getApproved(){ return approved;}
     public void setApproved(Boolean approved) {this.approved = approved;}
+
+    public long getStudentId(){ return studentId;}
+    public void setStudentId(long studentId) { this.studentId = studentId;}
 
     public Set<User> getBookmarks(){
         return bookmarks;
