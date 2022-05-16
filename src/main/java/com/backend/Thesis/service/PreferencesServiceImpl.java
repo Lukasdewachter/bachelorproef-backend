@@ -20,17 +20,25 @@ public class PreferencesServiceImpl implements PreferencesService {
 
     @Override
     public Preferences savePreferences(Preferences preferences) {
-        return preferencesRepository.save(preferences);
+        Preferences pref = preferencesRepository.findByIdStudent(preferences.getIdStudent());
+        if(pref == null){
+            if(preferences.getSubmitted() == null){
+                preferences.setSubmitted(false);
+            }
+            return preferencesRepository.save(preferences);
+        } else {
+            return null;
+        }
     }
 
     @Override
-    public Preferences getPreferencesById(long id) {
-        return preferencesRepository.findById(id).get();
+    public Preferences getPreferencesByIdStudent(long userId) {
+        return preferencesRepository.findByIdStudent(userId);
     }
 
     @Override
-    public Preferences updatePreferences(Preferences preferences, long id) {
-        Preferences existingPreferences = preferencesRepository.findById(id).get();
+    public Preferences updatePreferences(Preferences preferences, long userId) {
+        Preferences existingPreferences = preferencesRepository.findByIdStudent(userId);
 
         if (Objects.nonNull(preferences.getFirstChoice()) && !"".equals(preferences.getFirstChoice())) {
             existingPreferences.setFirstChoice(preferences.getFirstChoice());
@@ -42,6 +50,10 @@ public class PreferencesServiceImpl implements PreferencesService {
 
         if (Objects.nonNull(preferences.getThirdChoice()) && !"".equals(preferences.getThirdChoice())) {
             existingPreferences.setThirdChoice(preferences.getThirdChoice());
+        }
+
+        if (Objects.nonNull(preferences.getSubmitted()) && !"".equals(preferences.getSubmitted())) {
+            existingPreferences.setSubmitted(preferences.getSubmitted());
         }
 
         return preferencesRepository.save(existingPreferences);

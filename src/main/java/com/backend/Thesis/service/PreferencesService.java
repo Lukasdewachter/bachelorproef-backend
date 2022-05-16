@@ -9,10 +9,9 @@ public interface PreferencesService {
 
     Preferences savePreferences(Preferences preferences);
 
-    Preferences getPreferencesById(long id);
+    Preferences getPreferencesByIdStudent(long userId);
 
-    Preferences updatePreferences(Preferences preferences, long id);
+    Preferences updatePreferences(Preferences preferences, long userId);
 
     void deletePreferencesById(long id);
-
 }
