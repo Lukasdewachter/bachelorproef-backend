@@ -8,9 +8,9 @@
 		<version>2.6.3</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
-	<groupId>com.authenticatie</groupId>
-	<artifactId>demo</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<groupId>com.bachelorproef</groupId>
+	<artifactId>bachelorproef-backend</artifactId>
+	<version>V0.1</version>
 	<name>Bachelorproef</name>
 	<description>Bachelorproef - Backend</description>
 	<properties>
