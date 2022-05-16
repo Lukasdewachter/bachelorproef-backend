@@ -1,4 +1,5 @@
 package com.backend.UserManagement.controller;
+import com.backend.Thesis.entity.Thesis;
 import com.backend.UserManagement.entity.User;
 import com.backend.UserManagement.service.UserService;
 import com.fasterxml.jackson.databind.node.ObjectNode;
@@ -50,5 +51,13 @@ public class ProfessorController {
     @PutMapping("/update/{id}")
     public User updateProfessor(@RequestBody User professor, @PathVariable("id") long id) {
         return userService.updateUser(professor, id);
+    }
+
+    @PreAuthorize("hasAnyRole('Professor', 'Admin')")
+    @PostMapping("/studentThesis")
+    public User addStudentToThesis(@RequestBody ObjectNode json) {
+        Long thesisId = json.get("thesisId").asLong();
+        Long studentId = json.get("studentId").asLong();
+        return userService.addStudentToThesis(thesisId, studentId);
     }
 }

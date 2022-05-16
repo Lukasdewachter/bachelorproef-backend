@@ -84,10 +84,6 @@ public class ThesisServiceImpl implements ThesisService {
             existingThesis.setApproved(thesis.getApproved());
         }
 
-        if (Objects.nonNull(thesis.getStudentId()) && !"".equals(thesis.getStudentId())) {
-            existingThesis.setStudentId(thesis.getStudentId());
-        }
-
         return thesisRepository.save(existingThesis);
     }
 
@@ -101,11 +97,4 @@ public class ThesisServiceImpl implements ThesisService {
         return thesisRepository.findAllByBookmarksId(userId);
     }
 
-    @Override
-    public Thesis addStudentToThesis(long thesisId, long studentId){
-        Thesis thesis = thesisRepository.findById(thesisId).get();
-        thesis.setStudentId(studentId);
-        thesisRepository.save(thesis);
-        return thesis;
-    }
 }

@@ -23,8 +23,6 @@ public class Thesis {
     private int numberOfPers;
     private Boolean approved;
 
-    private long studentId;
-
     @ManyToMany(fetch = FetchType.LAZY,
             cascade = {
                     CascadeType.PERSIST,
@@ -70,9 +68,6 @@ public class Thesis {
 
     public Boolean getApproved(){ return approved;}
     public void setApproved(Boolean approved) {this.approved = approved;}
-
-    public long getStudentId(){ return studentId;}
-    public void setStudentId(long studentId) { this.studentId = studentId;}
 
     public Set<User> getBookmarks(){
         return bookmarks;

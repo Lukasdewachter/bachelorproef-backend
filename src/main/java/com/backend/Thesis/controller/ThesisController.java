@@ -54,12 +54,4 @@ public class ThesisController {
     public Thesis updateThesis(@RequestBody Thesis thesis, @PathVariable("id") long id) {
         return thesisService.updateThesis(thesis, id);
     }
-
-    @PreAuthorize("hasAnyRole('Professor', 'Admin')")
-    @PostMapping("/addStudent")
-    public Thesis addStudentToThesis(@RequestBody ObjectNode json) {
-        Long thesisId = json.get("thesisId").asLong();
-        Long studentId = json.get("studentId").asLong();
-        return thesisService.addStudentToThesis(thesisId, studentId);
-    }
 }

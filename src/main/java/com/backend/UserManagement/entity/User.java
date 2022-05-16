@@ -36,6 +36,8 @@ public class User {
     @Column
     private Boolean coordinator;
 
+    private Long thesisId;
+
     @Column
     @JsonProperty
     private String password;
@@ -174,6 +176,9 @@ public class User {
         return coordinator;
     }
     public void setCoordinator(Boolean coordinator) {this.coordinator = coordinator;}
+
+    public Long getThesisId(){ return thesisId;}
+    public void setThesisId(long thesisId){this.thesisId=thesisId;}
 
     @JsonIgnore
     public String getPassword(){ return password; }

@@ -1,7 +1,9 @@
 package com.backend.UserManagement.controller;
+import com.backend.Thesis.entity.Thesis;
 import com.backend.UserManagement.Exception.ResourceNotFoundException;
 import com.backend.UserManagement.entity.User;
 import com.backend.UserManagement.service.UserService;
+import com.fasterxml.jackson.databind.node.ObjectNode;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
@@ -47,5 +49,4 @@ public class StudentController {
     public User updateStudent(@RequestBody User student, @PathVariable("id") long id) {
         return userService.updateUser(student, id);
     }
-
 }

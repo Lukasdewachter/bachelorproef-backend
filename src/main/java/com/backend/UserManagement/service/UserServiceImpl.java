@@ -1,5 +1,6 @@
 package com.backend.UserManagement.service;
 
+import com.backend.Thesis.entity.Thesis;
 import com.backend.Thesis.repository.ThesisRepository;
 import com.backend.UserManagement.Exception.ResourceNotFoundException;
 import com.backend.UserManagement.entity.Roles;
@@ -120,6 +121,10 @@ public class UserServiceImpl implements UserService {
             existingUser.setCoordinator(user.getCoordinator());
         }
 
+        if (Objects.nonNull(user.getThesisId()) && !"".equals(user.getThesisId())) {
+            existingUser.setThesisId(user.getThesisId());
+        }
+
         return userRepository.save(existingUser);
     }
 
@@ -154,6 +159,14 @@ public class UserServiceImpl implements UserService {
     public Boolean isCoordinator(long userId){
         User user = userRepository.findById(userId).get();
         return user.getCoordinator();
+    }
+
+    @Override
+    public User addStudentToThesis(long thesisId, long studentId){
+        User user = userRepository.findById(studentId).get();
+        user.setThesisId(thesisId);
+        userRepository.save(user);
+        return user;
     }
 
 }

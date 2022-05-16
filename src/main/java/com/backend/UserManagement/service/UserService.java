@@ -1,5 +1,6 @@
 package com.backend.UserManagement.service;
 
+import com.backend.Thesis.entity.Thesis;
 import com.backend.UserManagement.entity.User;
 
 import java.util.List;
@@ -28,4 +29,6 @@ public interface UserService {
     void toggleBookmark(long thesisId, long userId);
 
     Boolean isCoordinator(long userId);
+
+    User addStudentToThesis(long thesisId, long studentId);
 }
