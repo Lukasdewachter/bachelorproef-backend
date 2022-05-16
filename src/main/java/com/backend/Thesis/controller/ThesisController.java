@@ -16,7 +16,7 @@ public class ThesisController {
     private ThesisService thesisService;
 
     // Add operation
-    @PreAuthorize("hasAnyRole('Company', 'Admin')")
+    @PreAuthorize("hasAnyRole('Company', 'Admin','Professor')")
     @PostMapping(path="/add")
     public Thesis saveThesis(@RequestBody Thesis thesis) {
         return thesisService.saveThesis(thesis);
@@ -31,7 +31,7 @@ public class ThesisController {
     }
 
     // Get all operation
-    @PreAuthorize("hasAnyRole('Admin', 'Professor')")
+    @PreAuthorize("hasAnyRole('Admin', 'Professor',)")
     @GetMapping(path="/all")
     public List<Thesis> fetchThesisList() {
         return thesisService.getAllThesis();
