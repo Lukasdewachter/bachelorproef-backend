@@ -39,24 +39,26 @@ public class PreferencesServiceImpl implements PreferencesService {
     @Override
     public Preferences updatePreferences(Preferences preferences, long userId) {
         Preferences existingPreferences = preferencesRepository.findByIdStudent(userId);
+        if (existingPreferences == null) {
+            return preferencesRepository.save(preferences);
+        } else {
+            if (Objects.nonNull(preferences.getFirstChoice()) && !"".equals(preferences.getFirstChoice())) {
+                existingPreferences.setFirstChoice(preferences.getFirstChoice());
+            }
 
-        if (Objects.nonNull(preferences.getFirstChoice()) && !"".equals(preferences.getFirstChoice())) {
-            existingPreferences.setFirstChoice(preferences.getFirstChoice());
+            if (Objects.nonNull(preferences.getSecondChoice()) && !"".equals(preferences.getSecondChoice())) {
+                existingPreferences.setSecondChoice(preferences.getSecondChoice());
+            }
+
+            if (Objects.nonNull(preferences.getThirdChoice()) && !"".equals(preferences.getThirdChoice())) {
+                existingPreferences.setThirdChoice(preferences.getThirdChoice());
+            }
+
+            if (Objects.nonNull(preferences.getSubmitted()) && !"".equals(preferences.getSubmitted())) {
+                existingPreferences.setSubmitted(preferences.getSubmitted());
+            }
+            return preferencesRepository.save(existingPreferences);
         }
-
-        if (Objects.nonNull(preferences.getSecondChoice()) && !"".equals(preferences.getSecondChoice())) {
-            existingPreferences.setSecondChoice(preferences.getSecondChoice());
-        }
-
-        if (Objects.nonNull(preferences.getThirdChoice()) && !"".equals(preferences.getThirdChoice())) {
-            existingPreferences.setThirdChoice(preferences.getThirdChoice());
-        }
-
-        if (Objects.nonNull(preferences.getSubmitted()) && !"".equals(preferences.getSubmitted())) {
-            existingPreferences.setSubmitted(preferences.getSubmitted());
-        }
-
-        return preferencesRepository.save(existingPreferences);
     }
 
     @Override
