@@ -44,7 +44,7 @@ public class StudentController {
     }
 
     // Update operation
-    @PreAuthorize("hasAnyRole('Student', 'Admin')")
+    @PreAuthorize("hasAnyRole('Student', 'Admin', 'Professor')")
     @PutMapping("/update/{id}")
     public User updateStudent(@RequestBody User student, @PathVariable("id") long id) {
         return userService.updateUser(student, id);
